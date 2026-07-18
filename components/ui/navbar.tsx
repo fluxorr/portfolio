@@ -14,10 +14,10 @@ const Navbar = () => {
     return (
         <nav className="mx-auto max-w-5xl border-x border-dashed border-neutral-400/50 p-4">
             <div className="flex justify-between items-center">
-                <div>(fx.)</div>
+                <div className="font-hand" >(fx.)</div>
                 <div className="flex items-center gap-2 text-neutral-500">
                     <AnimatedBackground
-                        className="rounded-md bg-neutral-200 dark:bg-neutral-700"
+                        className="rounded-md bg-neutral-600/30"
                         transition={{ type: 'spring', bounce: 0.2, duration: 0.3 }}
                     >
                         {links.map(({ href, label }) => (
