@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link";
-import ThemeToggle from "./theme-toggle";
+import ThemeToggle from "../ui/theme-toggle";
 import { AnimatedBackground } from "@/components/core/animated-background";
 
 const links = [
