@@ -3,6 +3,8 @@ import Navbar from "@/components/sections/navbar";
 import Contact from "@/components/sections/contact";
 import ContriGraph from "@/components/sections/ContributionGraph";
 import React from "react";
+import Greeting from "@/components/sections/greeting";
+import ProjectShowcase from "@/components/sections/project-showcase";
 
 const Home = () => {
   return (
@@ -10,7 +12,10 @@ const Home = () => {
       <DashedBorder children={<Navbar />} />
       <DashedBorder children={<Hero />} />
       <DashedBorder children={<Contact />} />
+      <DashedBorder children={<Greeting />} />
+      <DashedBorder children={<ProjectShowcase />} />
       <DashedBorder children={<ContriGraph />} />
+
     </div>
   );
 };

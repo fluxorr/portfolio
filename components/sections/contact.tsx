@@ -29,7 +29,7 @@ const Contact = () => {
     };
 
     return (
-        <div className="mx-auto max-w-5xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col text-left relative">
+        <div className="mx-auto max-w-4xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col text-left relative">
             <div className="p-4 relative z-10">
                 <div className="flex justify-between items-center text-foreground/55">
                     <AnimateElement as="div" animation="slideRight" className="flex px-4 gap-4">

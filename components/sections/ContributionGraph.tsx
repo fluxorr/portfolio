@@ -33,7 +33,7 @@ export default function ContriGraph() {
     }, [])
 
     return (
-        <div className="mx-auto max-w-5xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col items-center relative">
+        <div className="mx-auto max-w-4xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col items-center relative">
             {data.length === 0 ? (
                 <div className="flex flex-col gap-2 py-2">
                     <div className="grid grid-rows-7 grid-flow-col gap-0.75" style={{ gridAutoColumns: "11px" }}>

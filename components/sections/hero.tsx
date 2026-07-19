@@ -7,7 +7,7 @@ import { HalftoneTrail } from "../ui/halftone-trail";
 
 const Hero = () => {
     return (
-        <div className="mx-auto max-w-5xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col text-left  relative  ">
+        <div className="mx-auto max-w-4xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col text-left  relative  ">
             <HalftoneTrail
                 cellSize={10}
                 color="var(--foreground)"
