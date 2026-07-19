@@ -1,7 +1,7 @@
 import Hero from "@/components/sections/hero";
 import Navbar from "@/components/sections/navbar";
 import Contact from "@/components/sections/contact";
-import ContributionGraph from "@/components/sections/ContributionGraph";
+import ContriGraph from "@/components/sections/ContributionGraph";
 import React from "react";
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
       <DashedBorder children={<Navbar />} />
       <DashedBorder children={<Hero />} />
       <DashedBorder children={<Contact />} />
-      <DashedBorder children={<ContributionGraph />} />
+      <DashedBorder children={<ContriGraph />} />
     </div>
   );
 };
@@ -21,7 +21,7 @@ const DashedBorder = ({ children }: { children: React.JSX.Element }) => {
   return (
     <div className="w-full z-50 backdrop-blur-xl border-b border-dashed dark:border-neutral-400/30">
       {children}
-      <div className="border-dashed h-2  border-y w-full border-neutral-400/30 bg-black " />
+      <div className="border-dashed h-2  border-y w-full border-neutral-400/30 dark:bg-black  " />
     </div>
   );
 };
