@@ -30,35 +30,36 @@ const Contact = () => {
 
     return (
         <div className="mx-auto max-w-5xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col text-left relative">
-            <div className="px-4 flex justify-between items-center text-foreground/55">
-                <AnimateElement as="div" animation="slideRight" className="flex px-4 gap-4">
-                    {contacts.map((c) => (
-                        <div
-                            key={c.label}
-                            onClick={() => window.open(c.href, "_blank")}
-                            onMouseEnter={() => show(c.label)}
-                            onMouseLeave={hide}
-                            className="ring-1 ring-muted w-fit p-2 rounded-md cursor-pointer hover:bg-accent/30 hover:text-foreground"
-                        >
-                            <HugeiconsIcon icon={c.icon} size={18} color="currentColor" strokeWidth={1} />
-                        </div>
-                    ))}
-                </AnimateElement>
-                <div className="px-4  flex items-center text-sm font-syne ">
-                    <AnimatePresence mode="popLayout">
-                        <AnimateElement key={hovered ?? "default"} animation="blurIn" duration={0.35}>
-                            {hovered ?? "Socials"
-                            }
-                        </AnimateElement>
-                    </AnimatePresence>
+            <div className="p-4 relative z-10">
+                <div className="flex justify-between items-center text-foreground/55">
+                    <AnimateElement as="div" animation="slideRight" className="flex px-4 gap-4">
+                        {contacts.map((c) => (
+                            <div
+                                key={c.label}
+                                onClick={() => window.open(c.href, "_blank")}
+                                onMouseEnter={() => show(c.label)}
+                                onMouseLeave={hide}
+                                className="ring-1 ring-muted w-fit p-2 rounded-md cursor-pointer hover:bg-accent/30 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            >
+                                <HugeiconsIcon icon={c.icon} size={18} color="currentColor" strokeWidth={1} />
+                            </div>
+                        ))}
+                    </AnimateElement>
+                    <div className="px-4 flex items-center text-sm font-syne">
+                        <AnimatePresence mode="popLayout">
+                            <AnimateElement key={hovered ?? "default"} animation="blurIn" duration={0.35}>
+                                {hovered ?? "Socials"}
+                            </AnimateElement>
+                        </AnimatePresence>
+                    </div>
                 </div>
-            </div>
 
-            <div className="absolute inset-y-[-30%] -left-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
-                <Scales size={8} className="rounded-lg" />
-            </div>
-            <div className="absolute inset-y-[-30%] -right-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
-                <Scales size={8} className="rounded-lg" />
+                <div className="absolute inset-y-[-30%] -left-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
+                    <Scales size={8} className="rounded-lg" />
+                </div>
+                <div className="absolute inset-y-[-30%] -right-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
+                    <Scales size={8} className="rounded-lg" />
+                </div>
             </div>
         </div>
     );

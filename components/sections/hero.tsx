@@ -1,24 +1,35 @@
 "use client";
 import { TextAnimate } from "../ui/text-animate";
 import { Scales } from "../core/scales";
-
+import { HalftoneTrail } from "../ui/halftone-trail";
 
 
 const Hero = () => {
     return (
         <div className="mx-auto max-w-5xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col text-left  relative  ">
-            <div className="p-4">
+            <HalftoneTrail
+                cellSize={10}
+                color="var(--foreground)"
+                decay={0.965}
+                brushSize={0.045}
+                hoverBrushSize={0.012}
+                opacity={1.0}
+                hoverOpacity={0.15}
+                speedScale={38.0}
+            />
+
+            <div className="p-4 relative z-10">
                 <TextAnimate className="font-hand text-sm text-neutral-100/40" by="character" animation="scaleUp">01</TextAnimate>
                 <div className="flex flex-col text-left pt-24 ">
                     <TextAnimate
                         by="line"
                         animation="slideRight"
-                        className="font-display text-3xl ml-2 -mb-8"
+                        className="font-display text-3xl ml-2 -mb-2 "
                     >
                         Hi, I'm
                     </TextAnimate>
                     <TextAnimate
-                        className="font-display text-[10rem]  "
+                        className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[10rem]"
                         by="character"
                         animation="slideUp"
                     >
