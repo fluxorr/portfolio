@@ -4,6 +4,7 @@ import { Scales } from "../core/scales";
 import { HalftoneTrail } from "../ui/halftone-trail";
 
 
+
 const Hero = () => {
     return (
         <div className="mx-auto max-w-5xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col text-left  relative  ">
@@ -19,7 +20,7 @@ const Hero = () => {
             />
 
             <div className="p-4 relative z-10">
-                <TextAnimate className="font-hand text-sm text-neutral-100/40" by="character" animation="scaleUp">01</TextAnimate>
+                <TextAnimate className="font-hand text-sm dark:text-neutral-100/40 text-neutral-800/40 " by="character" animation="scaleUp">01</TextAnimate>
                 <div className="flex flex-col text-left pt-24 ">
                     <TextAnimate
                         by="line"
@@ -64,6 +65,7 @@ const Hero = () => {
 
             </div>
         </div>
+
     );
 };
 
