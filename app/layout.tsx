@@ -33,11 +33,16 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "Fluxorr.",
-  description: "Minimal portfolio",
+  title: { default: "Fluxorr.", template: "%s | Fluxorr." },
+  description: "Full-stack engineer portfolio — building thoughtful interfaces and systems.",
+  keywords: ["portfolio", "full-stack", "engineer", "developer", "react", "next.js"],
+  authors: [{ name: "Rahul Chaudhari", url: "https://byflux.me" }],
+  creator: "Rahul Chaudhari",
+  metadataBase: new URL("https://byflux.me"),
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Fluxorr.",
-    description: "Minimal portfolio",
+    description: "Full-stack engineer portfolio — building thoughtful interfaces and systems.",
     url: "https://byflux.me",
     siteName: "Fluxorr.",
     images: [
@@ -49,6 +54,13 @@ export const metadata: Metadata = {
       },
     ],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fluxorr.",
+    description: "Full-stack engineer portfolio — building thoughtful interfaces and systems.",
+    creator: "@fluxorr_",
+    images: ["/og-image.png"],
   },
 };
 
