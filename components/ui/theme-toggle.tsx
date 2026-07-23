@@ -1,10 +1,13 @@
 "use client";
 
+import { motion, type Variants } from "motion/react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { motion, type Variants } from "motion/react";
 
-import { ThemeToggler, type ThemeSelection } from "@/components/animate-ui/primitives/effects/theme-toggler";
+import {
+  type ThemeSelection,
+  ThemeToggler,
+} from "@/components/animate-ui/primitives/effects/theme-toggler";
 
 // Same three paths as the original DarkModeIcon glyph — outer ring, inner ring, center line.
 const ICON_PATHS = [

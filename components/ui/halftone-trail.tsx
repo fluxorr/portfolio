@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
 
 const VERT_SHADER = `
   attribute vec2 position;
@@ -71,7 +72,11 @@ function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
 }
 
-function compileShader(gl: WebGLRenderingContext, source: string, type: number): WebGLShader | null {
+function compileShader(
+  gl: WebGLRenderingContext,
+  source: string,
+  type: number,
+): WebGLShader | null {
   const shader = gl.createShader(type);
   if (!shader) return null;
   gl.shaderSource(shader, source);
@@ -84,7 +89,11 @@ function compileShader(gl: WebGLRenderingContext, source: string, type: number):
   return shader;
 }
 
-function linkProgram(gl: WebGLRenderingContext, vsSource: string, fsSource: string): WebGLProgram | null {
+function linkProgram(
+  gl: WebGLRenderingContext,
+  vsSource: string,
+  fsSource: string,
+): WebGLProgram | null {
   const vs = compileShader(gl, vsSource, gl.VERTEX_SHADER);
   const fs = compileShader(gl, fsSource, gl.FRAGMENT_SHADER);
   if (!vs || !fs) return null;
@@ -104,7 +113,17 @@ function linkProgram(gl: WebGLRenderingContext, vsSource: string, fsSource: stri
 function createFBO(gl: WebGLRenderingContext, w: number, h: number) {
   const texture = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, texture);
-  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+  gl.texImage2D(
+    gl.TEXTURE_2D,
+    0,
+    gl.RGBA,
+    w,
+    h,
+    0,
+    gl.RGBA,
+    gl.UNSIGNED_BYTE,
+    null,
+  );
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -112,7 +131,13 @@ function createFBO(gl: WebGLRenderingContext, w: number, h: number) {
 
   const fb = gl.createFramebuffer();
   gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
-  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+  gl.framebufferTexture2D(
+    gl.FRAMEBUFFER,
+    gl.COLOR_ATTACHMENT0,
+    gl.TEXTURE_2D,
+    texture,
+    0,
+  );
   return { fb, texture };
 }
 
@@ -121,7 +146,10 @@ const probeCtx =
     ? document.createElement("canvas").getContext("2d")
     : null;
 
-function resolveColor(el: HTMLElement, colorStr: string): [number, number, number] {
+function resolveColor(
+  el: HTMLElement,
+  colorStr: string,
+): [number, number, number] {
   el.style.color = colorStr;
   const computed = getComputedStyle(el).color;
   if (!probeCtx) return [0.5, 0.5, 0.5];
@@ -186,7 +214,10 @@ class HalftoneTrailEngine {
     this.currentBrushSize = config.brushSize;
     this.currentOpacity = config.opacity;
 
-    const gl = canvas.getContext("webgl", { alpha: true, premultipliedAlpha: false });
+    const gl = canvas.getContext("webgl", {
+      alpha: true,
+      premultipliedAlpha: false,
+    });
     if (!gl) throw new Error("WebGL unavailable");
     this.gl = gl;
 
@@ -194,7 +225,8 @@ class HalftoneTrailEngine {
 
     const trailProgram = linkProgram(gl, VERT_SHADER, TRAIL_FRAG);
     const halftoneProgram = linkProgram(gl, VERT_SHADER, HALFTONE_FRAG);
-    if (!trailProgram || !halftoneProgram) throw new Error("Shader compilation failed");
+    if (!trailProgram || !halftoneProgram)
+      throw new Error("Shader compilation failed");
     this.trailProgram = trailProgram;
     this.halftoneProgram = halftoneProgram;
 
@@ -228,7 +260,11 @@ class HalftoneTrailEngine {
     if (!buf) throw new Error("Buffer creation failed");
     this.positionBuffer = buf;
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
+      gl.STATIC_DRAW,
+    );
 
     this.tick = this.tick.bind(this);
     this.rafId = requestAnimationFrame(this.tick);
@@ -252,7 +288,9 @@ class HalftoneTrailEngine {
     }
 
     const el = document.elementFromPoint(clientX, clientY);
-    this.hovering = this.config.hoverSelector ? !!el?.closest(this.config.hoverSelector) : false;
+    this.hovering = this.config.hoverSelector
+      ? !!el?.closest(this.config.hoverSelector)
+      : false;
   }
 
   resize(w: number, h: number) {
@@ -269,9 +307,13 @@ class HalftoneTrailEngine {
     const dpr = Math.min(window.devicePixelRatio, 2);
 
     this.reveal = lerp(this.reveal, 1.0, 0.04);
-    const targetBrush = this.hovering ? this.config.hoverBrushSize : this.config.brushSize;
+    const targetBrush = this.hovering
+      ? this.config.hoverBrushSize
+      : this.config.brushSize;
     this.currentBrushSize = lerp(this.currentBrushSize, targetBrush, 0.08);
-    const targetOpacity = this.hovering ? this.config.hoverOpacity : this.config.opacity;
+    const targetOpacity = this.hovering
+      ? this.config.hoverOpacity
+      : this.config.opacity;
     this.currentOpacity = lerp(this.currentOpacity, targetOpacity, 0.08);
     this.velocity *= 0.9;
 
@@ -307,7 +349,12 @@ class HalftoneTrailEngine {
     gl.uniform1i(this.hTrailLoc, 0);
     gl.uniform2f(this.hResLoc, this.width * dpr, this.height * dpr);
     gl.uniform1f(this.hCellLoc, this.config.cellSize);
-    gl.uniform3f(this.hColorLoc, this.colorRGB[0], this.colorRGB[1], this.colorRGB[2]);
+    gl.uniform3f(
+      this.hColorLoc,
+      this.colorRGB[0],
+      this.colorRGB[1],
+      this.colorRGB[2],
+    );
     gl.uniform1f(this.hOpacityLoc, this.currentOpacity);
 
     gl.enable(gl.BLEND);
@@ -376,7 +423,14 @@ export const HalftoneTrail: React.FC<HalftoneTrailProps> = ({
     let engine: HalftoneTrailEngine;
     try {
       engine = new HalftoneTrailEngine(canvas, {
-        decay, brushSize, hoverBrushSize, opacity, hoverOpacity, speedScale, cellSize, hoverSelector,
+        decay,
+        brushSize,
+        hoverBrushSize,
+        opacity,
+        hoverOpacity,
+        speedScale,
+        cellSize,
+        hoverSelector,
       });
     } catch {
       setSupported(false);
@@ -387,7 +441,11 @@ export const HalftoneTrail: React.FC<HalftoneTrailProps> = ({
     engine.setColor(resolveColor(container, color));
 
     const onPointerMove = (e: PointerEvent) => {
-      engine.updatePointer(e.clientX, e.clientY, container.getBoundingClientRect());
+      engine.updatePointer(
+        e.clientX,
+        e.clientY,
+        container.getBoundingClientRect(),
+      );
     };
     window.addEventListener("pointermove", onPointerMove, { passive: true });
 
@@ -407,7 +465,17 @@ export const HalftoneTrail: React.FC<HalftoneTrailProps> = ({
       window.removeEventListener("pointermove", onPointerMove);
       ro.disconnect();
     };
-  }, [cellSize, decay, brushSize, hoverBrushSize, opacity, hoverOpacity, speedScale, hoverSelector]);
+  }, [
+    cellSize,
+    decay,
+    brushSize,
+    hoverBrushSize,
+    opacity,
+    hoverOpacity,
+    speedScale,
+    hoverSelector,
+    color,
+  ]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -418,7 +486,10 @@ export const HalftoneTrail: React.FC<HalftoneTrailProps> = ({
     update();
 
     const observer = new MutationObserver(update);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
     return () => observer.disconnect();
   }, [color]);
 
@@ -432,7 +503,12 @@ export const HalftoneTrail: React.FC<HalftoneTrailProps> = ({
     >
       <canvas
         ref={canvasRef}
-        style={{ display: "block", width: "100%", height: "100%", pointerEvents: "none" }}
+        style={{
+          display: "block",
+          width: "100%",
+          height: "100%",
+          pointerEvents: "none",
+        }}
       />
     </div>
   );

@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter, Funnel_Display, Playwrite_FR_Moderne_Guides, Syne } from "next/font/google";
+import {
+  Funnel_Display,
+  Geist,
+  Geist_Mono,
+  Inter,
+  Playwrite_FR_Moderne_Guides,
+  Syne,
+} from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Providers from "./providers";
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,15 +41,24 @@ const syne = Syne({
 
 export const metadata: Metadata = {
   title: { default: "Fluxorr.", template: "%s | Fluxorr." },
-  description: "Full-stack engineer portfolio — building thoughtful interfaces and systems.",
-  keywords: ["portfolio", "full-stack", "engineer", "developer", "react", "next.js"],
+  description:
+    "Full-stack engineer portfolio — building thoughtful interfaces and systems.",
+  keywords: [
+    "portfolio",
+    "full-stack",
+    "engineer",
+    "developer",
+    "react",
+    "next.js",
+  ],
   authors: [{ name: "Rahul Chaudhari", url: "https://byflux.me" }],
   creator: "Rahul Chaudhari",
   metadataBase: new URL("https://byflux.me"),
   alternates: { canonical: "/" },
   openGraph: {
     title: "Fluxorr.",
-    description: "Full-stack engineer portfolio — building thoughtful interfaces and systems.",
+    description:
+      "Full-stack engineer portfolio — building thoughtful interfaces and systems.",
     url: "https://byflux.me",
     siteName: "Fluxorr.",
     images: [
@@ -58,19 +74,27 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Fluxorr.",
-    description: "Full-stack engineer portfolio — building thoughtful interfaces and systems.",
+    description:
+      "Full-stack engineer portfolio — building thoughtful interfaces and systems.",
     creator: "@fluxorr_",
     images: ["/og-image.png"],
   },
 };
-
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const classes = cn("antialiased", geistSans.variable, geistMono.variable, inter.variable, funnelDisplay.variable, playwrite.variable, syne.variable);
+  const classes = cn(
+    "antialiased",
+    geistSans.variable,
+    geistMono.variable,
+    inter.variable,
+    funnelDisplay.variable,
+    playwrite.variable,
+    syne.variable,
+  );
   return (
     <html lang="en" suppressHydrationWarning>
       <head>

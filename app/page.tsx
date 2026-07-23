@@ -1,28 +1,39 @@
+import type { ReactNode } from "react";
+import ContriGraph from "@/components/sections/ContributionGraph";
+import Contact from "@/components/sections/contact";
+import Greeting from "@/components/sections/greeting";
 import Hero from "@/components/sections/hero";
 import Navbar from "@/components/sections/navbar";
-import Contact from "@/components/sections/contact";
-import ContriGraph from "@/components/sections/ContributionGraph";
-import React from "react";
-import Greeting from "@/components/sections/greeting";
 import ProjectShowcase from "@/components/sections/project-showcase";
 
 const Home = () => {
   return (
-    <div className="  relative  ">
-      <DashedBorder children={<Navbar />} />
-      <DashedBorder children={<Hero />} />
-      <DashedBorder children={<Contact />} />
-      <DashedBorder children={<Greeting />} />
-      <DashedBorder children={<ProjectShowcase />} />
-      <DashedBorder children={<ContriGraph />} />
-
+    <div className="relative">
+      <DashedBorder>
+        <Navbar />
+      </DashedBorder>
+      <DashedBorder>
+        <Hero />
+      </DashedBorder>
+      <DashedBorder>
+        <Contact />
+      </DashedBorder>
+      <DashedBorder>
+        <Greeting />
+      </DashedBorder>
+      <DashedBorder>
+        <ProjectShowcase />
+      </DashedBorder>
+      <DashedBorder>
+        <ContriGraph />
+      </DashedBorder>
     </div>
   );
 };
 
 export default Home;
 
-const DashedBorder = ({ children }: { children: React.JSX.Element }) => {
+const DashedBorder = ({ children }: { children: ReactNode }) => {
   return (
     <div className="w-full z-50 backdrop-blur-xl border-b border-dashed dark:border-neutral-400/30">
       {children}
