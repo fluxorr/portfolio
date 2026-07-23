@@ -59,10 +59,13 @@ export default function ThemeToggle() {
             width={18}
             height={18}
             fill="none"
+            role="img"
+            aria-label={effective === "dark" ? "Dark mode" : "Light mode"}
             initial={{ rotate: -60, opacity: 0 }}
             animate={{ rotate: 0, opacity: 1 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
+            <title>{effective === "dark" ? "Dark mode" : "Light mode"}</title>
             {ICON_PATHS.map((d, i) => (
               <motion.path
                 key={i}

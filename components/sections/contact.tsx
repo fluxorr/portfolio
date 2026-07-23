@@ -44,9 +44,11 @@ const Contact = () => {
             className="flex px-4 gap-4"
           >
             {contacts.map((c) => (
-              <div
+              <a
                 key={c.label}
-                onClick={() => window.open(c.href, "_blank")}
+                href={c.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 onMouseEnter={() => show(c.label)}
                 onMouseLeave={hide}
                 className="ring-1 ring-muted w-fit p-2 rounded-md cursor-pointer hover:bg-accent/30 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -57,7 +59,7 @@ const Contact = () => {
                   color="currentColor"
                   strokeWidth={1}
                 />
-              </div>
+              </a>
             ))}
           </AnimateElement>
           <div className="px-4 flex items-center text-sm font-syne">

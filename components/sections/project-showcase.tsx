@@ -119,14 +119,16 @@ export default function ProjectShowcase() {
                       <span
                         key={slug}
                         className="text-muted-foreground/50 group-hover:text-muted-foreground/70 transition-colors"
-                        title={icon.title}
                       >
                         <svg
                           viewBox="0 0 24 24"
                           width={14}
                           height={14}
                           fill="currentColor"
+                          role="img"
+                          aria-label={icon.title}
                         >
+                          <title>{icon.title}</title>
                           <path d={icon.path} />
                         </svg>
                       </span>
@@ -135,23 +137,26 @@ export default function ProjectShowcase() {
                 </div>
               </div>
               {p.href && (
-                <span
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    window.open(p.github, "_blank");
-                  }}
+                <a
+                  href={p.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
                   className="relative z-10 p-2 text-muted-foreground/50 hover:text-foreground transition-colors shrink-0 cursor-pointer"
-                  title="View source"
+                  aria-label="View source on GitHub"
                 >
                   <svg
                     viewBox="0 0 24 24"
                     width={18}
                     height={18}
                     fill="currentColor"
+                    role="img"
+                    aria-label="GitHub"
                   >
+                    <title>GitHub</title>
                     <path d={siGithub.path} />
                   </svg>
-                </span>
+                </a>
               )}
             </a>
           );
@@ -178,6 +183,7 @@ export default function ProjectShowcase() {
           <img
             src={`/project${hovered + 1}.png`}
             alt={projects[hovered].title}
+            loading="lazy"
             className="w-full h-full object-cover border border-neutral-500/40 rounded-md"
           />
         </motion.div>
