@@ -16,16 +16,16 @@ const Hero = () => {
         >
           01
         </TextAnimate>
-        <div className="flex flex-col text-left pt-24 ">
+        <div className="flex flex-col text-left lg:pt-24 md:pt-24 pt-12">
           <TextAnimate
             by="line"
             animation="slideRight"
-            className="font-display text-3xl ml-2 -mb-2 "
+            className="font-display text-3xl lg:ml-3 ml-1 text-foreground/90 lg:-mb-2 "
           >
             Hi, I'm
           </TextAnimate>
           <TextAnimate
-            className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[10rem]"
+            className="font-display text-6xl sm:text-7xl md:text-8xl  lg:text-[10rem]"
             by="character"
             animation="slideUp"
           >
@@ -33,7 +33,7 @@ const Hero = () => {
           </TextAnimate>
         </div>
 
-        <div className="flex justify-between items-center font-syne p-4 text-foreground/55 ">
+        <div className="flex justify-between items-baseline-last font-syne px-4 pt-4 text-foreground/55 text-sm lg:text-lg -ml-3 lg:ml-0 -mb-2 mt-4 ">
           <div className="">
             <TextAnimate by="line" animation="slideRight">
               Software Engineer.
@@ -43,7 +43,7 @@ const Hero = () => {
               Interface, Backend & Systems.
             </TextAnimate>
           </div>
-          <TextAnimate by="line" animation="slideLeft" className="text-sm mt-2">
+          <TextAnimate by="line" animation="slideLeft" className="text-xs lg:text-lg ">
             20, Pune, IND
           </TextAnimate>
         </div>

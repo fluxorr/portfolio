@@ -18,6 +18,7 @@ const Home = () => {
         opacity={1.0}
         hoverOpacity={0.15}
         speedScale={38.0}
+        className="hidden md:block"
       />
       <DashedBorder>
         <Navbar />
