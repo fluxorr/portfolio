@@ -45,7 +45,7 @@ export default Home;
 
 const DashedBorder = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="w-full z-50 backdrop-blur-xl border-b border-dashed border-neutral-400/40 dark:border-neutral-400/10">
+    <div className="w-full z-50  border-b border-dashed border-neutral-400/40 dark:border-neutral-400/10">
       {children}
       <div className="border-dashed h-2  border-y w-full border-neutral-400/40 dark:border-neutral-400/10  " />
     </div>

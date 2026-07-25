@@ -6,8 +6,7 @@ import {
   NewTwitterIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { AnimatePresence } from "motion/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Scales } from "../core/scales";
 import { AnimateElement } from "../ui/element-animate";
 
@@ -34,12 +33,19 @@ const Contact = () => {
     timer.current = setTimeout(() => setHovered(null), 1000);
   };
 
+  useEffect(() => {
+    return () => {
+      if (timer.current) clearTimeout(timer.current);
+    };
+  }, []);
+
   return (
     <div className="mx-auto max-w-4xl  p-4 flex flex-col text-left relative">
       <div className="p-4 relative z-10">
         <div className="flex justify-between items-center text-foreground/55">
           <AnimateElement
             as="div"
+            by="self"
             animation="slideRight"
             className="flex px-4 gap-4"
           >
@@ -51,7 +57,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 onMouseEnter={() => show(c.label)}
                 onMouseLeave={hide}
-                className="border border-neutral-700 w-fit p-2 rounded-md cursor-pointer hover:bg-accent/30 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="border border-border w-fit h-fit p-2 rounded-md cursor-pointer hover:bg-accent/30 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <HugeiconsIcon
                   icon={c.icon}
@@ -63,15 +69,14 @@ const Contact = () => {
             ))}
           </AnimateElement>
           <div className="px-4 flex items-center text-sm font-syne">
-            <AnimatePresence mode="popLayout">
-              <AnimateElement
-                key={hovered ?? "default"}
-                animation="blurIn"
-                duration={0.35}
-              >
-                {hovered ?? "Socials"}
-              </AnimateElement>
-            </AnimatePresence>
+            <AnimateElement
+              key={hovered ?? "default"}
+              animation="blurIn"
+              by="self"
+              duration={0.35}
+            >
+              {hovered ?? "Socials"}
+            </AnimateElement>
           </div>
         </div>
 
