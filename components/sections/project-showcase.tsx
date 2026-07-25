@@ -70,7 +70,7 @@ export default function ProjectShowcase() {
     <div
       ref={containerRef}
       onPointerMove={handlePointer}
-      className="mx-auto max-w-4xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col text-left relative"
+      className="mx-auto max-w-4xl  p-4 flex flex-col text-left relative"
     >
       <div className="px-4 pt-4 pb-2 relative z-10">
         <TextAnimate
@@ -92,14 +92,12 @@ export default function ProjectShowcase() {
         {projects.map((p, i) => {
           const link = p.href || p.github;
           return (
-            <a
+            <div
               key={i}
-              href={link}
-              target="_blank"
-              rel="noopener"
+              onClick={() => window.open(link, "_blank")}
               onPointerEnter={() => setHovered(i)}
               onPointerLeave={() => setHovered(null)}
-              className="group relative flex items-start gap-6 px-4 py-6 transition-colors hover:bg-accent/20"
+              className="group relative flex items-start gap-6 px-4 py-6 transition-colors hover:bg-accent/20 cursor-pointer"
             >
               <span className="font-hand text-sm text-muted-foreground w-8 shrink-0 pt-1 relative z-10">
                 {String(i + 1).padStart(2, "0")}
@@ -137,11 +135,11 @@ export default function ProjectShowcase() {
                 </div>
               </div>
               {p.href && (
-                <a
-                  href={p.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.open(p.github, "_blank");
+                  }}
                   className="relative z-10 p-2 text-muted-foreground/50 hover:text-foreground transition-colors shrink-0 cursor-pointer"
                   aria-label="View source on GitHub"
                 >
@@ -156,9 +154,9 @@ export default function ProjectShowcase() {
                     <title>GitHub</title>
                     <path d={siGithub.path} />
                   </svg>
-                </a>
+                </button>
               )}
-            </a>
+            </div>
           );
         })}
       </AnimateElement>
@@ -189,10 +187,10 @@ export default function ProjectShowcase() {
         </motion.div>
       )}
 
-      <div className="absolute inset-y-[-30%] -left-6 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
+      <div className="absolute inset-y-[-30%] -left-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
         <Scales size={8} className="rounded-lg" />
       </div>
-      <div className="absolute inset-y-[-30%] -right-6 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
+      <div className="absolute inset-y-[-30%] -right-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
         <Scales size={8} className="rounded-lg" />
       </div>
     </div>

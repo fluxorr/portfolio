@@ -3,7 +3,7 @@ import { TextAnimate } from "../ui/text-animate";
 
 const Greeting = () => {
   return (
-    <div className="mx-auto max-w-4xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col text-left  relative  ">
+    <div className="mx-auto max-w-4xl  p-4 flex flex-col text-left  relative  ">
       <TextAnimate
         by="character"
         animation="blurIn"
@@ -25,10 +25,10 @@ const Greeting = () => {
         reliability.
       </TextAnimate>
 
-      <div className="absolute inset-y-[-30%] -left-6 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
+      <div className="absolute inset-y-[-30%] -left-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
         <Scales size={8} className="rounded-lg" />
       </div>
-      <div className="absolute inset-y-[-30%] -right-6 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
+      <div className="absolute inset-y-[-30%] -right-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
         <Scales size={8} className="rounded-lg" />
       </div>
     </div>

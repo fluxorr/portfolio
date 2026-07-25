@@ -99,6 +99,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <script
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
 (function(){try{var h=document.documentElement,e=localStorage.getItem("theme");if(e==="dark"||(e!="light"&&window.matchMedia("(prefers-color-scheme:dark)").matches))h.classList.add("dark")}catch(e){}})()
@@ -106,7 +107,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={cn("min-h-full flex flex-col", classes, "font-sans")}>
+      <body className={cn("min-h-full flex flex-col selection:bg-foreground/40 dark:selection:bg-foreground/40 dark:selection:text-background selection:text-background  ", classes, "font-sans")}>
         <Providers>{children}</Providers>
       </body>
     </html>

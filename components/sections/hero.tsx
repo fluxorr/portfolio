@@ -5,17 +5,8 @@ import { TextAnimate } from "../ui/text-animate";
 
 const Hero = () => {
   return (
-    <div className="mx-auto max-w-4xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col text-left  relative  ">
-      <HalftoneTrail
-        cellSize={10}
-        color="var(--foreground)"
-        decay={0.965}
-        brushSize={0.045}
-        hoverBrushSize={0.012}
-        opacity={1.0}
-        hoverOpacity={0.15}
-        speedScale={38.0}
-      />
+    <div className="mx-auto max-w-4xl  p-4 flex flex-col text-left  relative  ">
+
 
       <div className="p-4 relative z-10">
         <TextAnimate
@@ -57,10 +48,10 @@ const Hero = () => {
           </TextAnimate>
         </div>
 
-        <div className="absolute inset-y-[-30%] -left-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
+        <div className="absolute inset-y-[-30%] -left-14 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
           <Scales size={8} className="rounded-lg " />
         </div>
-        <div className="absolute inset-y-[-30%] -right-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
+        <div className="absolute inset-y-[-30%] -right-14 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
           <Scales size={8} className="rounded-lg" />
         </div>
       </div>

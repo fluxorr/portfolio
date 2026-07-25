@@ -13,7 +13,7 @@ const links = [
 
 const Navbar = () => {
   return (
-    <nav className="mx-auto max-w-4xl border-x border-dashed border-neutral-400/50 p-4 relative ">
+    <nav className="mx-auto max-w-4xl  p-4 relative ">
       <div className="flex justify-between items-center">
         <TextAnimate
           className="font-hand"

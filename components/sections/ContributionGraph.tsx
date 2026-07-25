@@ -33,7 +33,7 @@ export default function ContriGraph() {
   }, []);
 
   return (
-    <div className="mx-auto max-w-4xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col items-center relative">
+    <div className="mx-auto max-w-4xl  p-4 flex flex-col items-center relative">
       {data.length === 0 ? (
         <div className="flex flex-col gap-2 py-2">
           <div
@@ -102,10 +102,10 @@ export default function ContriGraph() {
         </TooltipProvider>
       )}
 
-      <div className="absolute inset-y-[-30%] -left-6 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
+      <div className="absolute inset-y-[-30%] -left-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
         <Scales size={8} className="rounded-lg" />
       </div>
-      <div className="absolute inset-y-[-30%] -right-6 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
+      <div className="absolute inset-y-[-30%] -right-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
         <Scales size={8} className="rounded-lg" />
       </div>
     </div>

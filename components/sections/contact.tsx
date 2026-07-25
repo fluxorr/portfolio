@@ -35,7 +35,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="mx-auto max-w-4xl border-x border-dashed border-neutral-400/50 p-4 flex flex-col text-left relative">
+    <div className="mx-auto max-w-4xl  p-4 flex flex-col text-left relative">
       <div className="p-4 relative z-10">
         <div className="flex justify-between items-center text-foreground/55">
           <AnimateElement
@@ -51,7 +51,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 onMouseEnter={() => show(c.label)}
                 onMouseLeave={hide}
-                className="ring-1 ring-muted w-fit p-2 rounded-md cursor-pointer hover:bg-accent/30 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="border border-neutral-700 w-fit p-2 rounded-md cursor-pointer hover:bg-accent/30 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <HugeiconsIcon
                   icon={c.icon}
@@ -75,10 +75,10 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="absolute inset-y-[-30%] -left-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
+        <div className="absolute inset-y-[-30%] -left-14 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
           <Scales size={8} className="rounded-lg" />
         </div>
-        <div className="absolute inset-y-[-30%] -right-10 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
+        <div className="absolute inset-y-[-30%] -right-14 h-[160%] w-8 mask-t-from-90% mask-b-from-90%">
           <Scales size={8} className="rounded-lg" />
         </div>
       </div>

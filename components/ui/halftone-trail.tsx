@@ -394,7 +394,7 @@ export interface HalftoneTrailProps {
 
 export const HalftoneTrail: React.FC<HalftoneTrailProps> = ({
   cellSize = 9,
-  color = "var(--foreground)",
+  color = "var(--border)",
   decay = 0.97,
   brushSize = 0.04,
   hoverBrushSize = 0.012,
