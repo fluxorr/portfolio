@@ -6,6 +6,7 @@ import Hero from "@/components/sections/hero";
 import Navbar from "@/components/sections/navbar";
 import ProjectShowcase from "@/components/sections/project-showcase";
 import HalftoneTrail from "@/components/ui/halftone-trail";
+import Testimonials from "@/components/sections/testimonials";
 
 const Home = () => {
   return (
@@ -36,8 +37,12 @@ const Home = () => {
         <ProjectShowcase />
       </DashedBorder>
       <DashedBorder>
+        <Testimonials />
+      </DashedBorder>
+      <DashedBorder>
         <ContriGraph />
       </DashedBorder>
+
     </div>
   );
 };
