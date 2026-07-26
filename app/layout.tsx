@@ -10,6 +10,7 @@ import {
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Providers from "./providers";
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -109,6 +110,7 @@ export default function RootLayout({
       </head>
       <body className={cn("min-h-full flex flex-col selection:bg-foreground/40 dark:selection:bg-foreground/40 dark:selection:text-background selection:text-background  ", classes, "font-sans")}>
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );
