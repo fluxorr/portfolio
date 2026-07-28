@@ -1,21 +1,28 @@
 "use client";
+import { useState } from "react";
 import { Scales } from "../core/scales";
 import { HalftoneTrail } from "../ui/halftone-trail";
 import { TextAnimate } from "../ui/text-animate";
 
 const Hero = () => {
+  const [showRahul, setShowRahul] = useState(false);
+
   return (
     <div className="mx-auto max-w-4xl  p-4 flex flex-col text-left  relative  ">
 
 
       <div className="p-4 relative z-10">
-        <TextAnimate
-          className="font-hand text-sm dark:text-neutral-100/40 text-neutral-800/40 "
-          by="character"
-          animation="scaleUp"
+        <button
+          onClick={() => setShowRahul((p) => !p)}
+          className="font-hand text-sm dark:text-neutral-100/40 text-neutral-800/40 cursor-pointer"
         >
-          01
-        </TextAnimate>
+          <TextAnimate
+            by="character"
+            animation="scaleUp"
+          >
+            {showRahul ? "02" : "01"}
+          </TextAnimate>
+        </button>
         <div className="flex flex-col text-left lg:pt-24 md:pt-24 pt-12">
           <TextAnimate
             by="line"
@@ -25,11 +32,12 @@ const Hero = () => {
             Hi, I'm
           </TextAnimate>
           <TextAnimate
+            key={showRahul ? "rahul" : "fluxorr"}
             className="font-display text-6xl sm:text-7xl md:text-8xl  lg:text-[10rem]"
             by="character"
             animation="slideUp"
           >
-            fluxorr.
+            {showRahul ? "rahul." : "fluxorr."}
           </TextAnimate>
         </div>
 

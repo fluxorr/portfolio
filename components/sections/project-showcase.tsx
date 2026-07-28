@@ -9,6 +9,15 @@ import {
   siReact,
   siTailwindcss,
   siTypescript,
+  siRust,
+  siFramer,
+  siTauri,
+  siCodemirror,
+  siMarkdown,
+  siTokio,
+
+
+
 } from "simple-icons";
 import { Scales } from "../core/scales";
 import { AnimateElement } from "../ui/element-animate";
@@ -24,25 +33,81 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "v0",
-    desc: "AI-powered UI generation platform by Vercel",
-    href: "https://v0.dev",
-    github: "https://github.com/vercel/v0",
-    tech: ["react", "nextdotjs", "tailwindcss", "typescript"],
+    title: "SpeakDown",
+    desc: "A local-first Markdown editor with on-device AI voice dictation, privacy-first transcription, and seamless writing workflows.",
+    href: "https://speakdown.byflux.me/", // replace with your actual URL
+    github: "https://github.com/fluxorr/speakdown",
+    tech: [
+      "tauri",
+      "react",
+      "rust",
+      "tokiors",
+      "typescript",
+      "codemirror",
+      "markdown",
+    ],
   },
   {
-    title: "Motion",
-    desc: "Animation library for React and vanilla JavaScript. Animation library for React and vanilla JavaScript. Animation library for React and vanilla JavaScript.   ",
-    href: "https://motion.dev",
-    github: "https://github.com/motiondivision/motion",
-    tech: ["javascript", "css"],
+    title: "Aegis Academy",
+    desc: "An interactive platform for mastering distributed systems through visual lessons, real-world failures, and hands-on labs.",
+    href: "https://aegis.byflux.me/",
+    github: "https://github.com/fluxorr/aegis",
+    tech: [
+      "nextdotjs",
+      "react",
+      "typescript",
+      "tailwindcss",
+      "turso",
+      "sqlite",
+      "docker",
+      "redis",
+      "go",
+    ],
   },
   {
-    title: "shadcn/ui",
-    desc: "Re-usable components built with Radix and Tailwind CSS",
-    href: "https://ui.shadcn.com",
-    github: "https://github.com/shadcn-ui/ui",
-    tech: ["react", "typescript", "tailwindcss"],
+    title: "Nooks",
+    desc: "A browser extension that saves, organizes, and rediscovers your favorite links in beautifully designed collections.",
+    href: "https://nooks-ge8uubsdc-rahuls-projects-934cee74.vercel.app/",
+    github: "https://github.com/fluxorr/nooks",
+    tech: [
+      "react",
+      "typescript",
+      "tailwindcss",
+      "webextensions",
+      "vite",
+      "turso",
+      "motion"
+    ],
+  },
+  {
+    title: "Kosei",
+    desc: "An AI-powered video creator that transforms prompts into polished short-form content with minimal editing.",
+    href: "https://kosei-one.vercel.app/",
+    github: "https://github.com/rahulchaudhari06/kosei",
+    tech: [
+      "nextdotjs",
+      "react",
+      "typescript",
+      "tailwindcss",
+      "remotion",
+      "openrouter",
+      "hono",
+    ],
+  },
+  {
+    title: "Closely",
+    desc: "A playful relationship game that helps long-distance couples stay connected through daily challenges and shared memories.",
+    href: "https://closely-emtg.vercel.app/",
+    github: "https://github.com/rahulchaudhari06/closely",
+    tech: [
+      "react",
+      "typescript",
+      "nextdotjs",
+      "tailwindcss",
+      "supabase",
+      "clerk",
+      "framer",
+    ],
   },
 ];
 
@@ -53,6 +118,12 @@ const iconMap: Record<string, { title: string; path: string }> = {
   typescript: siTypescript,
   javascript: siJavascript,
   css: siCss,
+  rust: siRust,
+  framer: siFramer,
+  tauri: siTauri,
+  codemirror: siCodemirror,
+  markdown: siMarkdown,
+  tokiors: siTokio,
 };
 
 export default function ProjectShowcase() {

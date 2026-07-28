@@ -1,0 +1,3 @@
+myapp.localhost {
+    reverse_proxy localhost:6969
+}

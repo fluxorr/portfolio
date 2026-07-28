@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+
+  "dev:next": "next dev -p 6969",
+  "dev:caddy": "caddy run",
+       "build": "next build",
+
+  "dev": "concurrently \"bun run dev:next\" \"bun run dev:caddy\""  ,  "start": "next start",
     "lint": "biome check",
     "format": "biome format --write"
   },
@@ -41,6 +44,7 @@
     "@types/node": "^20.19.43",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "concurrently": "^10.0.4",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3"
   },
