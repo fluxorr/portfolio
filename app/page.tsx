@@ -5,8 +5,8 @@ import Greeting from "@/components/sections/greeting";
 import Hero from "@/components/sections/hero";
 import Navbar from "@/components/sections/navbar";
 import ProjectShowcase from "@/components/sections/project-showcase";
-import HalftoneTrail from "@/components/ui/halftone-trail";
 import Testimonials from "@/components/sections/testimonials";
+import HalftoneTrail from "@/components/ui/halftone-trail";
 
 const Home = () => {
   return (
@@ -42,7 +42,6 @@ const Home = () => {
       <DashedBorder>
         <ContriGraph />
       </DashedBorder>
-
     </div>
   );
 };

@@ -16,19 +16,19 @@ export default function InfiniteMovingCardsDemo() {
 
 const testimonials = [
   {
-    content:
-      "beauty!!! 🧡 ",
+    content: "beauty!!! 🧡 ",
     name: "Sasha",
     username: "@aleksksaa",
-    avatar: "https://pbs.twimg.com/profile_images/2008919046385717248/YkhFE0Ql_x96.jpg",
+    avatar:
+      "https://pbs.twimg.com/profile_images/2008919046385717248/YkhFE0Ql_x96.jpg",
     url: "https://x.com/aleksksaa",
   },
   {
-    content:
-      "Super Clean",
+    content: "Super Clean",
     name: "Alvaro Diaz",
     username: "@alvarostudio_",
-    avatar: "https://pbs.twimg.com/profile_images/2026749171735072770/ah5Xocid_400x400.jpg",
+    avatar:
+      "https://pbs.twimg.com/profile_images/2026749171735072770/ah5Xocid_400x400.jpg",
     url: "https://x.com/alexcodes",
   },
   // {
