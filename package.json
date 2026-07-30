@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev:next": "next dev -p 6969",
+    "dev:caddy": "caddy run",
+    "build": "next build",
 
-  "dev:next": "next dev -p 6969",
-  "dev:caddy": "caddy run",
-       "build": "next build",
-
-  "dev": "concurrently \"bun run dev:next\" \"bun run dev:caddy\""  ,  "start": "next start",
+    "dev": "concurrently \"bun run dev:next\" \"bun run dev:caddy\"",
+    "start": "next start",
     "lint": "biome check",
     "format": "biome format --write"
   },
