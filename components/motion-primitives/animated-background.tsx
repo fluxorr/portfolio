@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 
 type AnimatedBackgroundChildProps = {
   "data-id": string;
+  "data-checked"?: string;
   className?: string;
   children?: ReactNode;
 };
