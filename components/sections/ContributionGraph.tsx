@@ -42,6 +42,7 @@ export default function ContriGraph() {
           >
             {Array.from({ length: 53 * 7 }).map((_, i) => (
               <div
+                // biome-ignore lint/suspicious/noArrayIndexKey: static skeleton cell, no meaningful identity
                 key={i}
                 className="size-2.75 rounded-xs bg-neutral-400/10 animate-pulse"
               />
@@ -52,6 +53,7 @@ export default function ContriGraph() {
             <div className="flex gap-0.75 items-center">
               {Array.from({ length: 5 }).map((_, i) => (
                 <div
+                  // biome-ignore lint/suspicious/noArrayIndexKey: static skeleton cell, no meaningful identity
                   key={i}
                   className="size-2.75 rounded-xs bg-neutral-400/10 animate-pulse"
                 />

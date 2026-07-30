@@ -408,7 +408,7 @@ export const ContributionGraphCalendar = ({
             }
 
             return (
-              <Fragment key={`${weekIndex}-${dayIndex}`}>
+              <Fragment key={activity.date}>
                 {children({ activity, dayIndex, weekIndex })}
               </Fragment>
             );
@@ -487,8 +487,10 @@ export const ContributionGraphLegend = ({
       </span>
       {new Array(maxLevel + 1).fill(undefined).map((_, level) =>
         children ? (
+          // biome-ignore lint/suspicious/noArrayIndexKey: legend level is the item's identity
           <Fragment key={level}>{children({ level })}</Fragment>
         ) : (
+          // biome-ignore lint/suspicious/noArrayIndexKey: legend level is the item's identity
           <svg height={blockSize} key={level} width={blockSize}>
             <title>{`${level} contributions`}</title>
             <rect
