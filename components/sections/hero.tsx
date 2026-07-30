@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { Scales } from "../core/scales";
-import { HalftoneTrail } from "../ui/halftone-trail";
 import { TextAnimate } from "../ui/text-animate";
 
 const Hero = () => {
@@ -9,17 +8,13 @@ const Hero = () => {
 
   return (
     <div className="mx-auto max-w-4xl  p-4 flex flex-col text-left  relative  ">
-
-
       <div className="p-4 relative z-10">
         <button
+          type="button"
           onClick={() => setShowRahul((p) => !p)}
           className="font-hand text-sm dark:text-neutral-100/40 text-neutral-800/40 cursor-pointer"
         >
-          <TextAnimate
-            by="character"
-            animation="scaleUp"
-          >
+          <TextAnimate by="character" animation="scaleUp">
             {showRahul ? "02" : "01"}
           </TextAnimate>
         </button>
@@ -51,7 +46,11 @@ const Hero = () => {
               Interface, Backend & Systems.
             </TextAnimate>
           </div>
-          <TextAnimate by="line" animation="slideLeft" className="text-xs lg:text-lg ">
+          <TextAnimate
+            by="line"
+            animation="slideLeft"
+            className="text-xs lg:text-lg "
+          >
             20, Pune, IND
           </TextAnimate>
         </div>
