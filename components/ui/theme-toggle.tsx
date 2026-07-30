@@ -66,7 +66,7 @@ export default function ThemeToggle() {
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <title>{effective === "dark" ? "Dark mode" : "Light mode"}</title>
-            {ICON_PATHS.map((d) => (
+            {ICON_PATHS.map((d, i) => (
               <motion.path
                 key={d}
                 d={d}
