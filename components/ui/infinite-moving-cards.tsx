@@ -1,7 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 export const InfiniteMovingCards = ({
   items,
@@ -72,10 +73,12 @@ export const InfiniteMovingCards = ({
           >
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3">
-                <img
+                <Image
                   src={item.avatar}
                   alt={item.name}
-                  className="h-9 w-9 rounded-full ring-1 ring-border/50"
+                  width={36}
+                  height={36}
+                  className="rounded-full ring-1 ring-border/50"
                 />
                 <div>
                   <p className="text-sm font-semibold text-foreground">
@@ -90,7 +93,10 @@ export const InfiniteMovingCards = ({
                 viewBox="0 0 24 24"
                 className="mt-1 h-4 w-4 shrink-0 text-muted-foreground/50"
                 fill="currentColor"
+                role="img"
+                aria-label="X (Twitter)"
               >
+                <title>X (Twitter)</title>
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </div>
