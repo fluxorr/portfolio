@@ -57,17 +57,18 @@ export function AnimatedBackground({
   const dur = transition?.duration ?? 0.3;
 
   return (
+    // biome-ignore lint/a11y/useSemanticElements: group of nav links; fieldset would be a wrong semantic
     <div
       ref={containerRef}
+      role="group"
       className="relative inline-flex"
       onMouseEnter={(e) => {
-        const child = findChild(e);
-        if (child) setHoveredId(child.dataset.id!);
+        const id = findChild(e)?.dataset.id;
+        if (id) setHoveredId(id);
       }}
       onMouseMove={(e) => {
-        const child = findChild(e);
-        if (child && child.dataset.id !== hoveredId)
-          setHoveredId(child.dataset.id!);
+        const id = findChild(e)?.dataset.id;
+        if (id && id !== hoveredId) setHoveredId(id);
       }}
       onMouseLeave={() => setHoveredId(null)}
     >
