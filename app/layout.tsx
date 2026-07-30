@@ -8,9 +8,9 @@ import {
   Syne,
 } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { cn } from "@/lib/utils";
 import Providers from "./providers";
-import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -101,6 +101,7 @@ export default function RootLayout({
       <head>
         <script
           suppressHydrationWarning
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: static theme-init script, content is a compile-time constant with no user input
           dangerouslySetInnerHTML={{
             __html: `
 (function(){try{var h=document.documentElement,e=localStorage.getItem("theme");if(e==="dark"||(e!="light"&&window.matchMedia("(prefers-color-scheme:dark)").matches))h.classList.add("dark")}catch(e){}})()
@@ -108,7 +109,13 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={cn("min-h-full flex flex-col selection:bg-foreground/40 dark:selection:bg-foreground/40 dark:selection:text-background selection:text-background  ", classes, "font-sans")}>
+      <body
+        className={cn(
+          "min-h-full flex flex-col selection:bg-foreground/40 dark:selection:bg-foreground/40 dark:selection:text-background selection:text-background  ",
+          classes,
+          "font-sans",
+        )}
+      >
         <Providers>{children}</Providers>
         <Analytics />
       </body>
