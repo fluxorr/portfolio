@@ -312,6 +312,10 @@ const AnimateElementBase = ({
 
   // by="self" — animate the whole block as one unit, no per-child wrapping.
   if (by === "self") {
+    const itemVariants = finalVariants.item as Variants;
+    const showVariant = itemVariants.show;
+    const showTransition =
+      typeof showVariant === "function" ? undefined : showVariant?.transition;
     return (
       <AnimatePresence mode="popLayout">
         <MotionComponent
@@ -324,7 +328,7 @@ const AnimateElementBase = ({
           viewport={{ once }}
           transition={{
             delay,
-            ...(finalVariants.item as any)?.show?.transition,
+            ...showTransition,
           }}
           {...props}
         >

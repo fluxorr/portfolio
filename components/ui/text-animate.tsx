@@ -422,6 +422,7 @@ const TextAnimateBase = ({
         {accessible && <span className="sr-only">{children}</span>}
         {segments.map((segment, i) => (
           <motion.span
+            // biome-ignore lint/suspicious/noArrayIndexKey: repeated characters/lines need positional identity for the stagger animation
             key={`${by}-${segment}-${i}`}
             variants={finalVariants.item}
             custom={i * staggerTimings[by]}
