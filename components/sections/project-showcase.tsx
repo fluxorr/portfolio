@@ -1,23 +1,21 @@
 "use client";
 import { motion } from "motion/react";
+import Image from "next/image";
 import { type PointerEvent, useRef, useState } from "react";
 import {
+  siCodemirror,
   siCss,
+  siFramer,
   siGithub,
   siJavascript,
+  siMarkdown,
   siNextdotjs,
   siReact,
-  siTailwindcss,
-  siTypescript,
   siRust,
-  siFramer,
+  siTailwindcss,
   siTauri,
-  siCodemirror,
-  siMarkdown,
   siTokio,
-
-
-
+  siTypescript,
 } from "simple-icons";
 import { Scales } from "../core/scales";
 import { AnimateElement } from "../ui/element-animate";
@@ -76,7 +74,7 @@ const projects: Project[] = [
       "webextensions",
       "vite",
       "turso",
-      "motion"
+      "motion",
     ],
   },
   {
@@ -163,9 +161,18 @@ export default function ProjectShowcase() {
         {projects.map((p, i) => {
           const link = p.href || p.github;
           return (
+            // biome-ignore lint/a11y/useSemanticElements: row holds a nested button; a real anchor would nest interactive elements
             <div
-              key={i}
+              key={p.title}
+              role="link"
+              tabIndex={0}
               onClick={() => window.open(link, "_blank")}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  window.open(link, "_blank");
+                }
+              }}
               onPointerEnter={() => setHovered(i)}
               onPointerLeave={() => setHovered(null)}
               className="group relative flex items-start gap-6 px-4 py-6 transition-colors hover:bg-accent/20 cursor-pointer"
@@ -207,6 +214,7 @@ export default function ProjectShowcase() {
               </div>
               {p.href && (
                 <button
+                  type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     window.open(p.github, "_blank");
@@ -249,11 +257,12 @@ export default function ProjectShowcase() {
           }}
           className="pointer-events-none absolute z-50 w-48 h-36 -translate-x-1/2 -translate-y-full -mt-4 overflow-hidden hidden lg:block"
         >
-          <img
+          <Image
             src={`/project${hovered + 1}.png`}
             alt={projects[hovered].title}
-            loading="lazy"
-            className="w-full h-full object-cover border border-neutral-500/40 rounded-md"
+            fill
+            sizes="192px"
+            className="object-cover border border-neutral-500/40 rounded-md"
           />
         </motion.div>
       )}
