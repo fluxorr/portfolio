@@ -1,0 +1,392 @@
+.meridian {
+  --time-purple: #271f34;
+  --time-dark: #191521;
+  --time-lit: #efead9;
+  --time-rule: #625573;
+  --time-soft: #cfc2e8;
+  --time-valid: #d6ef80;
+  --time-conflict: #efb08a;
+  padding: clamp(14px, 2.8vw, 40px);
+  border: 1px solid #514461;
+  border-radius: 3px;
+  background: var(--time-purple);
+  color: var(--time-lit);
+  color-scheme: dark;
+}
+.meridian-mast,
+.meridian-heading,
+.meridian-edit summary,
+.meridian-scrubber,
+.meridian-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px 14px;
+}
+.meridian-mast {
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--time-rule);
+  color: var(--time-soft);
+}
+.meridian-mast > div,
+.meridian-foot > div,
+.meridian-zone-actions,
+.meridian-hours {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 9px;
+}
+
+.meridian-mast label,
+.meridian-hours label {
+  display: grid;
+  gap: 3px;
+  color: var(--time-soft);
+  font-size: 0.72rem;
+}
+.meridian input:not([type="range"]),
+.meridian select {
+  width: 100%;
+  min-height: 44px;
+  padding: 3px 8px;
+  border: 1px solid var(--time-rule);
+  border-radius: 3px;
+  background: var(--time-dark);
+  color: var(--time-lit);
+  font-size: 0.86rem;
+}
+.meridian-heading {
+  align-items: end;
+  padding-block: clamp(17px, 2.8vw, 30px) 13px;
+}
+.meridian-heading h2 {
+  font:
+    400 clamp(2.6rem, 5.9vw, 5.9rem) / 0.86 var(--font-atelier-serif),
+    Georgia,
+    serif;
+  letter-spacing: -0.025em;
+}
+.meridian-heading h2 em {
+  font-style: italic;
+  color: var(--time-soft);
+}
+.meridian-heading > div {
+  text-align: end;
+  color: var(--time-valid);
+}
+.meridian-heading > div[data-conflict="true"] {
+  color: var(--time-conflict);
+}
+.meridian-heading > div p:last-child {
+  font:
+    clamp(1.1rem, 3vw, 2.1rem) var(--font-atelier-mono),
+    monospace;
+  letter-spacing: -0.05em;
+}
+.meridian-heading > :where(div p) span {
+  font-size: 0.7em;
+}
+.meridian-edit {
+  margin-top: 8px;
+  border-block: 1px solid var(--time-rule);
+}
+.meridian-edit summary {
+  min-height: 47px;
+  justify-content: space-between;
+  color: var(--time-soft);
+  font-size: 0.84rem;
+  list-style: none;
+}
+.meridian-edit summary::before {
+  content: "+";
+  order: 1;
+}
+.meridian-edit[open] summary::before {
+  content: "−";
+}
+.meridian-edit :where(summary) span {
+  margin-left: auto;
+  font:
+    0.7rem var(--font-atelier-mono),
+    monospace;
+}
+.meridian-zone-list {
+  display: grid;
+  gap: 8px;
+  padding-bottom: 14px;
+}
+.meridian-zone-editor {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 7px 12px;
+  align-items: center;
+  border-top: 1px solid var(--time-rule);
+  padding-top: 7px;
+}
+.meridian-zone-editor small,
+.meridian-times small {
+  display: block;
+  color: var(--time-soft);
+  font-size: 0.74rem;
+  overflow-wrap: anywhere;
+}
+.meridian-zone-actions button,
+.meridian-add button,
+.meridian-scrubber button,
+.meridian-foot button {
+  min-height: 44px;
+  padding-inline: 9px;
+  border: 1px solid var(--time-rule);
+  border-radius: 3px;
+  color: var(--time-lit);
+  font-size: 0.82rem;
+}
+.meridian-add {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.meridian-small {
+  color: var(--time-soft);
+  font-size: 0.75rem;
+}
+
+.meridian-scroll {
+  overflow-x: auto;
+  margin-top: 13px;
+  scrollbar-color: #9e8cba #1b1625;
+  overscroll-behavior-inline: contain;
+}
+.meridian-chart {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.23fr) minmax(520px, 1fr);
+  min-width: 650px;
+}
+.meridian-labels {
+  display: grid;
+  align-content: start;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--time-purple);
+  padding-right: 8px;
+}
+.meridian-labels > span {
+  display: grid;
+  align-items: center;
+  min-height: 27px;
+  color: var(--time-soft);
+}
+.meridian-labels > div {
+  display: grid;
+  min-height: 54px;
+  padding-top: 4px;
+  align-content: center;
+  border-top: 1px solid var(--time-rule);
+  font-size: 0.84rem;
+}
+.meridian-labels small {
+  font:
+    0.69rem var(--font-atelier-mono),
+    monospace;
+  color: var(--time-soft);
+}
+
+.meridian-plate {
+  position: relative;
+  background:
+    repeating-linear-gradient(90deg, #aa96bc3a 0 1px, transparent 1px 12.5%),
+    #1c1628;
+  cursor: crosshair;
+}
+.meridian-ticks {
+  display: flex;
+  justify-content: space-between;
+  min-height: 27px;
+  align-items: center;
+  padding-inline: 4px;
+  color: var(--time-soft);
+  font:
+    0.65rem var(--font-atelier-mono),
+    monospace;
+}
+.meridian-ribbon {
+  --time-thread: #aa92cf;
+  position: relative;
+  min-height: 54px;
+  border-top: 1px solid var(--time-rule);
+}
+.meridian-ribbon[data-index="1"] {
+  --time-thread: #dbc8f0;
+}
+.meridian-ribbon[data-index="2"] {
+  --time-thread: #b0a7dc;
+}
+.meridian-ribbon[data-index="3"] {
+  --time-thread: #b9adca;
+}
+.meridian-ribbon[data-index="4"] {
+  --time-thread: #e4bdcf;
+}
+.meridian-ribbon i,
+.meridian-overlap i,
+.meridian-aperture {
+  position: absolute;
+  left: var(--span-start);
+  width: var(--span-length);
+}
+.meridian-ribbon i {
+  top: 10px;
+  height: 20px;
+  border: 1px solid var(--time-thread);
+  background: repeating-linear-gradient(
+    95deg,
+    var(--time-thread) 0 2px,
+    #685986 3px 4px
+  );
+  opacity: 0.83;
+}
+.meridian-ribbon span {
+  position: absolute;
+  bottom: 4px;
+  padding-left: 4px;
+  color: #d8cbeb;
+  font:
+    0.63rem var(--font-atelier-mono),
+    monospace;
+  white-space: nowrap;
+}
+.meridian-overlap {
+  position: relative;
+  height: 27px;
+  border-top: 1px solid var(--time-rule);
+}
+.meridian-overlap i {
+  top: 8px;
+  height: 10px;
+  background: var(--time-valid);
+}
+.meridian-aperture {
+  top: 0;
+  bottom: 0;
+  min-width: 3px;
+  border: 1px solid var(--time-valid);
+  background: #d6ef8025;
+  box-shadow: 0 0 0 1px #241e34;
+  pointer-events: auto;
+  touch-action: none;
+  cursor: grab;
+  z-index: 1;
+}
+.meridian-aperture b {
+  display: block;
+  width: 100%;
+  height: 6px;
+  background: var(--time-valid);
+}
+.meridian-plate[data-conflict="true"] .meridian-aperture {
+  border-color: var(--time-conflict);
+  background: repeating-linear-gradient(
+    135deg,
+    #efb08a24 0 2px,
+    transparent 2px 4px
+  );
+}
+.meridian-plate[data-conflict="true"] .meridian-aperture b {
+  background: var(--time-conflict);
+}
+
+.meridian-scrubber {
+  flex-wrap: nowrap;
+  margin: 8px 0 12px;
+}
+.meridian-scrubber input {
+  flex: 1;
+  min-width: 0;
+  min-height: 43px;
+  accent-color: var(--time-valid);
+}
+.meridian-scrubber button {
+  flex: none;
+}
+.meridian-selection {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 2fr);
+  gap: 12px 25px;
+  padding-block: 14px;
+  border-block: 1px solid var(--time-rule);
+}
+.meridian-check {
+  color: var(--time-soft);
+  font-size: 0.84rem;
+}
+.meridian-check .study-code {
+  color: var(--time-valid);
+  margin-bottom: 3px;
+}
+.meridian-times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 19px;
+}
+.meridian-times dt {
+  color: var(--time-soft);
+  font-size: 0.79rem;
+}
+.meridian-times dd {
+  font:
+    0.86rem var(--font-atelier-mono),
+    monospace;
+}
+.meridian-times [data-conflict="true"] dd {
+  color: var(--time-conflict);
+}
+.meridian-times small {
+  margin-top: 3px;
+}
+.meridian-foot {
+  padding-top: 12px;
+}
+.meridian-foot > button {
+  color: var(--time-dark);
+  background: var(--time-valid);
+  border-color: var(--time-valid);
+}
+.meridian-foot output:not(:empty) {
+  width: 100%;
+  color: var(--time-valid);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 665px) {
+  .meridian-heading > div {
+    text-align: start;
+  }
+  .meridian-zone-editor {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .meridian-selection {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.meridian-aperture::before {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 44px;
+  transform: translateX(-50%);
+  content: "";
+}
+@media (prefers-reduced-motion: no-preference) {
+  .meridian-ribbon i {
+    transform-origin: left;
+    animation: loom-print 510ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes loom-print {
+    from {
+      transform: scaleX(0.91);
+      opacity: 0.45;
+    }
+  }
+}

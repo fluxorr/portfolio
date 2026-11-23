@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { directions, monographPath } from "@/app/showcase/monograph/directions";
+import { studies } from "@/lib/atelier/studies";
 import { emberlogPath } from "@/lib/emberlog";
 import { portfolio } from "@/lib/portfolio-content";
 
@@ -7,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     "",
     "/showcase",
+    ...studies.map(({ slug }) => `/studies/${slug}`),
     emberlogPath,
     `${emberlogPath}/docs`,
     `${emberlogPath}/pricing`,

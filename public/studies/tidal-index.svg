@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+  <title>Tidal Index, original sample cover</title>
+  <rect width="400" height="500" fill="#e9dfc7"/>
+  <g fill="none" stroke="#153e75" transform="translate(200 247)">
+    <circle r="145" opacity=".3"/>
+    <circle r="137" stroke-dasharray="1 4" stroke-width="3"/>
+    <path d="M-132 23Q-80-55-37-29T46 2T134-40M-135 38Q-80-49-32-13T43 16T136-19M-130 53Q-85-37-31 2T41 30T136 3M-124 67Q-85-24-30 17T38 45T133 26M-116 79Q-85-8-31 34T36 59T125 50M-105 92Q-85 10-32 50T34 73T114 70M-91 103Q-83 28-33 67T32 87T100 90" stroke-width="2"/>
+    <path d="M0-137V137M-137 0H137" opacity=".3"/>
+    <circle cx="54" cy="-47" r="13"/>
+  </g>
+  <g fill="#153e75" font-family="serif">
+    <text x="35" y="63" font-size="32">Tidal Index</text>
+    <text x="36" y="453" font-size="13" letter-spacing="3">STUDY EDITION · 014</text>
+  </g>
+</svg>

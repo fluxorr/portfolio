@@ -4,6 +4,7 @@ import {
   monographOg,
   monographOgAlt,
 } from "@/app/showcase/monograph/directions";
+import { AtelierGallery } from "@/components/atelier/gallery";
 import { commonhourImage, commonhourPath } from "@/lib/commonhour";
 import { emberlogImage } from "@/lib/emberlog";
 import { portfolio } from "@/lib/portfolio-content";
@@ -46,12 +47,13 @@ export function ShowcaseDemos() {
 
   return (
     <>
+      <AtelierGallery />
       <section
         aria-labelledby="demo-components-title"
         className="showcase-section demo-section"
-        id="components"
+        id="component-archive"
       >
-        <h2 id="demo-components-title">Components</h2>
+        <h2 id="demo-components-title">From the workshop</h2>
         <div className="demo-component-grid">
           <article
             aria-labelledby="demo-wallet-title"

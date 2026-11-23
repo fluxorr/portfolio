@@ -1,0 +1,122 @@
+.weather-letters {
+  display: block;
+  width: 100%;
+  color: var(--weather-plot, #a93825);
+  overflow: visible;
+}
+.weather-type {
+  fill: currentColor;
+  font:
+    19px var(--font-atelier-mono),
+    monospace;
+}
+.weather-gridlines {
+  fill: none;
+  stroke: currentColor;
+  stroke-opacity: 0.15;
+  stroke-width: 1;
+}
+.weather-cursor {
+  transform: translateX(var(--hour-x));
+  transition: transform 120ms ease-out;
+}
+
+.route-plate {
+  display: block;
+  width: 100%;
+}
+.route-alignment {
+  fill: none;
+  stroke: #64827d;
+  stroke-width: 1;
+  stroke-dasharray: 2 6;
+  opacity: 0.38;
+}
+.route-wire {
+  fill: none;
+  stroke: #576d6b;
+  stroke-width: 2.4;
+  transition: stroke 170ms;
+}
+.route-slot {
+  fill: none;
+  stroke: #526765;
+  stroke-width: 1;
+}
+.route-node {
+  fill: #15262a;
+  stroke: #879d94;
+  stroke-width: 1.25;
+}
+.route-core {
+  fill: #879d94;
+}
+.route-caption {
+  fill: #f0f4ee;
+  text-anchor: middle;
+  font:
+    600 14px var(--font-atelier-mono),
+    monospace;
+}
+.route-caption-small {
+  fill: #acc0b9;
+  font-size: 11px;
+  letter-spacing: 0.055em;
+}
+.route-start {
+  text-anchor: start;
+}
+.route-end {
+  text-anchor: end;
+}
+.route-cell[data-lit="true"] .route-core {
+  fill: #b9ffe3;
+}
+.route-cell[data-lit="true"][data-emphasis="false"] .route-straight {
+  stroke: #9de9cb;
+  stroke-width: 3.5;
+}
+.route-cell[data-emphasis="true"] :is(.route-branch, .route-node) {
+  stroke: #f5a776;
+}
+.route-cell[data-emphasis="true"] .route-branch {
+  stroke-width: 3.4;
+}
+.route-cell[data-emphasis="true"] .route-core {
+  fill: #f5a776;
+}
+.route-cell[data-active="true"] .route-node {
+  fill: #395a4d;
+}
+.route-packet {
+  fill: none;
+  stroke: #e3fff4;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 4 7 4 7 4 74;
+  animation: switch-packets 480ms linear both;
+}
+@keyframes switch-packets {
+  from {
+    stroke-dashoffset: 24;
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  to {
+    stroke-dashoffset: -79;
+    opacity: 0;
+  }
+}
+
+.route-contacts {
+  fill: #4b6460;
+}
+.route-contacts [data-fed="true"] {
+  fill: #b1efd7;
+}
+.route-cell[data-emphasis="true"] .route-contacts [data-fed="true"] {
+  fill: #f5a776;
+}
