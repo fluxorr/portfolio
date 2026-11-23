@@ -781,6 +781,15 @@
   background: #191d24;
 }
 
+.demo-block-wide {
+  grid-column: 1 / -1;
+}
+
+.demo-block-wide .demo-block-preview {
+  aspect-ratio: 1200 / 630;
+  background: #f3f0e9;
+}
+
 .demo-block-preview img {
   object-fit: cover;
   transition: transform 540ms var(--glass-ease);

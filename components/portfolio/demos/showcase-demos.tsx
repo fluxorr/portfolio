@@ -1,5 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  monographOg,
+  monographOgAlt,
+} from "@/app/showcase/monograph/directions";
 import { commonhourImage, commonhourPath } from "@/lib/commonhour";
 import { emberlogImage } from "@/lib/emberlog";
 import { portfolio } from "@/lib/portfolio-content";
@@ -26,6 +30,14 @@ const conceptSites = [
     wideCover: false,
     coverBackground: "#f4f3f8",
     alt: "Commonhour’s live booking workspace on a cobalt dithered background.",
+  },
+  {
+    name: "Monograph",
+    type: "AI creative direction studio",
+    slug: "monograph",
+    image: monographOg,
+    alt: monographOgAlt,
+    wideCover: true,
   },
 ];
 
