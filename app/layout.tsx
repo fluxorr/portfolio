@@ -1,123 +1,60 @@
-import type { Metadata } from "next";
-import {
-  Funnel_Display,
-  Geist,
-  Geist_Mono,
-  Inter,
-  Playwrite_FR_Moderne_Guides,
-  Syne,
-} from "next/font/google";
-import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import { cn } from "@/lib/utils";
-import Providers from "./providers";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+import type { Metadata, Viewport } from "next";
+import { Geist } from "next/font/google";
+import { portfolio } from "@/lib/portfolio-content";
+import "./globals.css";
+import "./portfolio.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const funnelDisplay = Funnel_Display({
-  variable: "--font-display",
-  weight: ["300", "400", "500", "600", "700", "800"],
-  subsets: ["latin"],
-});
-
-const playwrite = Playwrite_FR_Moderne_Guides({
-  variable: "--font-hand",
-  weight: ["400"],
-});
-
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: { default: "Fluxorr.", template: "%s | Fluxorr." },
-  description:
-    "Full-stack engineer portfolio — building thoughtful interfaces and systems.",
-  keywords: [
-    "portfolio",
-    "full-stack",
-    "engineer",
-    "developer",
-    "react",
-    "next.js",
-  ],
-  authors: [{ name: "Rahul Chaudhari", url: "https://byflux.me" }],
-  creator: "Rahul Chaudhari",
-  metadataBase: new URL("https://byflux.me"),
+  title: portfolio.title,
+  description: portfolio.description,
+  authors: [{ name: portfolio.name, url: portfolio.url }],
+  creator: portfolio.name,
+  metadataBase: new URL(portfolio.url),
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Fluxorr.",
-    description:
-      "Full-stack engineer portfolio — building thoughtful interfaces and systems.",
-    url: "https://byflux.me",
-    siteName: "Fluxorr.",
+    type: "website",
+    title: portfolio.title,
+    description: portfolio.description,
+    url: portfolio.url,
+    siteName: portfolio.wordmark,
     images: [
       {
-        url: "/og-image.png",
+        url: "/social-card.png",
         width: 1200,
         height: 630,
-        alt: "Fluxorr.",
+        alt: "byflux — Seven selected website projects",
       },
     ],
-    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fluxorr.",
-    description:
-      "Full-stack engineer portfolio — building thoughtful interfaces and systems.",
-    creator: "@fluxorr_",
-    images: ["/og-image.png"],
+    title: portfolio.title,
+    description: portfolio.description,
+    images: ["/social-card.png"],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  const classes = cn(
-    "antialiased",
-    geistSans.variable,
-    geistMono.variable,
-    inter.variable,
-    funnelDisplay.variable,
-    playwrite.variable,
-    syne.variable,
-  );
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          suppressHydrationWarning
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: static theme-init script, content is a compile-time constant with no user input
-          dangerouslySetInnerHTML={{
-            __html: `
-(function(){try{var h=document.documentElement,e=localStorage.getItem("theme");if(e==="dark"||(e!="light"&&window.matchMedia("(prefers-color-scheme:dark)").matches))h.classList.add("dark")}catch(e){}})()
-            `.trim(),
-          }}
-        />
-      </head>
-      <body
-        className={cn(
-          "min-h-full flex flex-col selection:bg-foreground/40 dark:selection:bg-foreground/40 dark:selection:text-background selection:text-background  ",
-          classes,
-          "font-sans",
-        )}
-      >
-        <Providers>{children}</Providers>
-        <Analytics />
+    <html lang="en" data-scroll-behavior="smooth">
+      <body className={geistSans.variable}>
+        {children}
+        {process.env.VERCEL === "1" ? <Analytics /> : null}
       </body>
     </html>
   );
