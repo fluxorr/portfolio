@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ShowcaseDemos } from "@/components/portfolio/demos/showcase-demos";
 import { Arrow, Wordmark } from "@/components/portfolio/links";
 import { ShowcasePreviews } from "@/components/portfolio/showcase-previews";
 import { portfolio } from "@/lib/portfolio-content";
 import { showcaseFont } from "@/lib/showcase-font";
 import "./showcase.css";
+import "./demos.css";
+import "./slips-wallet.css";
 
 const description =
   "Explore websites and original interactive design demos by Rahul Chaudhari.";
@@ -49,6 +52,10 @@ export default function ShowcasePage() {
       <main className="portfolio-shell" id="showcase-main" tabIndex={-1}>
         <div className="showcase-intro">
           <h1 className="showcase-title">Showcase</h1>
+          <nav aria-label="Showcase sections" className="showcase-section-nav">
+            <a href="#full-sites">Full sites</a>
+            <a href="#components">Components</a>
+          </nav>
         </div>
         <ShowcasePreviews>
           <section
@@ -105,6 +112,7 @@ export default function ShowcasePage() {
             </div>
           </section>
         </ShowcasePreviews>
+        <ShowcaseDemos />
       </main>
       <footer className="portfolio-shell portfolio-footer">
         <Wordmark />

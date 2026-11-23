@@ -177,33 +177,3 @@ html:has(.showcase-dialog[open]) {
     font-size: 13px;
   }
 }
-
-.showcase-intro {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: end;
-  justify-content: space-between;
-  gap: 17px 24px;
-  padding-block: clamp(45px, 8vw, 110px) 35px;
-}
-
-.showcase-section-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 18px;
-}
-
-.showcase-section-nav a {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 540;
-}
-
-.showcase-section-nav a:hover {
-  color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
