@@ -9,5 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     emberlogPath,
     `${emberlogPath}/docs`,
     `${emberlogPath}/pricing`,
+    "/showcase/commonhour",
   ].map((path) => ({ url: `${portfolio.url}${path}` }));
 }

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { commonhourImage, commonhourPath } from "@/lib/commonhour";
 import { emberlogImage } from "@/lib/emberlog";
 import { portfolio } from "@/lib/portfolio-content";
 import { Arrow } from "../links";
@@ -16,6 +17,15 @@ const conceptSites = [
     wideCover: false,
     coverBackground: "#f7f7f4",
     alt: "Emberlog’s request timeline with an ember playhead and the headline Rewind any request.",
+  },
+  {
+    name: "Commonhour",
+    type: "Scheduling product",
+    slug: "commonhour",
+    image: commonhourImage,
+    wideCover: false,
+    coverBackground: "#f4f3f8",
+    alt: "Commonhour’s live booking workspace on a cobalt dithered background.",
   },
 ];
 
@@ -50,6 +60,23 @@ export function ShowcaseDemos() {
             </div>
             <SlipsWallet />
           </article>
+        </div>
+        <div className="mt-5 flex flex-wrap items-center gap-2">
+          <h3 className="mr-auto text-sm font-medium">Commonhour components</h3>
+          <Link
+            className="portfolio-button portfolio-button--secondary"
+            href={`${commonhourPath}#commonhour-picker`}
+            prefetch={false}
+          >
+            Booking widget <Arrow direction="out" />
+          </Link>
+          <Link
+            className="portfolio-button portfolio-button--secondary"
+            href={`${commonhourPath}#commonhour-zones`}
+            prefetch={false}
+          >
+            Time-zone comparison <Arrow direction="out" />
+          </Link>
         </div>
         <details className="demo-archive">
           <summary>Earlier component studies</summary>
