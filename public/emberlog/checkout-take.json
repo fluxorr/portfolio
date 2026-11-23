@@ -1,0 +1,50 @@
+{
+  "id": "take_08f3",
+  "method": "POST",
+  "path": "/v2/checkout",
+  "durationMs": 1200,
+  "timeoutMs": 600,
+  "gatewayDurationMs": 740,
+  "spans": [
+    {
+      "id": "gateway",
+      "label": "gateway",
+      "start": 0,
+      "end": 90,
+      "status": "ok",
+      "payload": { "route": "POST /v2/checkout", "authorization": "[redacted]" }
+    },
+    {
+      "id": "auth",
+      "label": "auth.verify",
+      "start": 70,
+      "end": 210,
+      "status": "ok",
+      "payload": { "user": "u_3c1", "token": "[redacted]" }
+    },
+    {
+      "id": "cart",
+      "label": "cart.load",
+      "start": 190,
+      "end": 420,
+      "status": "ok",
+      "payload": { "cart": "c_9f2", "items": 3 }
+    },
+    {
+      "id": "quote",
+      "label": "pricing.quote",
+      "start": 400,
+      "end": 860,
+      "status": "slow",
+      "payload": { "currency": "EUR", "latencyMs": 460, "cache": "miss" }
+    },
+    {
+      "id": "charge",
+      "label": "payments.charge",
+      "start": 820,
+      "end": 1140,
+      "status": "error",
+      "payload": { "card": "[redacted]", "error": "gateway_timeout" }
+    }
+  ]
+}

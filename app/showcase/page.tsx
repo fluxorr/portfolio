@@ -55,6 +55,7 @@ export default function ShowcasePage() {
           <nav aria-label="Showcase sections" className="showcase-section-nav">
             <a href="#full-sites">Full sites</a>
             <a href="#components">Components</a>
+            <a href="#blocks">Concept sites</a>
           </nav>
         </div>
         <ShowcasePreviews>
