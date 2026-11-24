@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { directions, monographPath } from "@/app/showcase/monograph/directions";
 import { studies } from "@/lib/atelier/studies";
 import { emberlogPath } from "@/lib/emberlog";
+import { memoirPath } from "@/lib/memoir";
 import { portfolio } from "@/lib/portfolio-content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -15,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/showcase/commonhour",
     monographPath,
     `${monographPath}/studio`,
+    memoirPath,
     ...directions.map(({ slug }) => `${monographPath}/directions/${slug}`),
   ].map((path) => ({ url: `${portfolio.url}${path}` }));
 }
