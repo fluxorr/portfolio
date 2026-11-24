@@ -215,121 +215,140 @@ export function Palimpsest({
         >
           <span>Evidence drawer</span>
           <small>{record.stages.length} recorded stages</small>
-          <span aria-hidden="true">{drawer ? "−" : "+"}</span>
+          <span className="archive-drawer-icon" aria-hidden="true" />
         </button>
-        <div id={id} className="archive-drawer-body" hidden={!drawer}>
-          {selected ? (
-            <div className="archive-evidence" key={selected.id}>
-              <div>
-                <p className="study-code">
-                  E / {pins[selected.id].index} · {selected.date}
-                </p>
-                <h2>{selected.title}</h2>
-                <p>{selected.text}</p>
-                <p className="archive-claim" data-status={selected.status}>
-                  {selected.status} <span>· {selected.by}</span>
-                </p>
-                {selected.source && (
-                  <a
-                    className="study-textlink"
-                    href={selected.source.href}
-                    onClick={() => {
-                      if (selected.source) onOpenSource?.(selected.source.href);
-                    }}
-                  >
-                    {" "}
-                    {selected.source.label} ↗
-                  </a>
-                )}
-                {selected.hash && (
-                  <div className="archive-checksum">
-                    <span className="study-code">SHA-256 · source bytes</span>
-                    <code>{selected.hash}</code>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        if (selected.hash) void copyHash(selected.hash);
-                      }}
-                    >
-                      Copy hash
-                    </button>
-                  </div>
-                )}
-              </div>
-              <div className="archive-history">
-                {record.image && missingImage !== record.image ? (
-                  // biome-ignore lint/performance/noImgElement: Records may supply remote or local artwork.
-                  <img
-                    src={record.image}
-                    alt={`${record.title} cover artwork`}
-                    loading="lazy"
-                    width="72"
-                    height="90"
-                    onError={() => setMissingImage(record.image)}
-                  />
-                ) : (
-                  <p className="study-code">Artwork unavailable</p>
-                )}
-                {revision && (
-                  <>
-                    <p className="study-code">Revision history</p>
-                    <div className="archive-versions">
-                      {record.revisions.map((entry) => (
+        <div
+          id={id}
+          className="archive-drawer-body"
+          data-open={drawer}
+          inert={!drawer}
+        >
+          <div className="archive-drawer-clip">
+            <div className="archive-drawer-content">
+              {selected ? (
+                <div className="archive-evidence" key={selected.id}>
+                  <div>
+                    <p className="study-code">
+                      E / {pins[selected.id].index} · {selected.date}
+                    </p>
+                    <h2>{selected.title}</h2>
+                    <p>{selected.text}</p>
+                    <p className="archive-claim" data-status={selected.status}>
+                      {selected.status} <span>· {selected.by}</span>
+                    </p>
+                    {selected.source && (
+                      <a
+                        className="study-textlink"
+                        href={selected.source.href}
+                        onClick={() => {
+                          if (selected.source)
+                            onOpenSource?.(selected.source.href);
+                        }}
+                      >
+                        {" "}
+                        {selected.source.label} ↗
+                      </a>
+                    )}
+                    {selected.hash && (
+                      <div className="archive-checksum">
+                        <span className="study-code">
+                          SHA-256 · source bytes
+                        </span>
+                        <code>{selected.hash}</code>
                         <button
-                          key={entry.id}
-                          aria-pressed={revision.id === entry.id}
                           type="button"
                           onClick={() => {
-                            setRevisionId(entry.id);
-                            setSplit(50);
-                            onRevisionSelect?.(entry.id);
+                            if (selected.hash) void copyHash(selected.hash);
                           }}
                         >
-                          <strong>{entry.id}</strong>
-                          <small>{entry.date}</small>
+                          Copy hash
                         </button>
-                      ))}
-                    </div>
-                    <p aria-live="polite">{revision.note}</p>
-                    {revision.versions && (
-                      <div className="archive-diff">
-                        {/* biome-ignore lint/performance/noImgElement: Revision URLs come from the supplied record. */}
-                        <img
-                          src={revision.versions.after}
-                          alt="Artwork after revision"
-                        />
-                        {/* biome-ignore lint/performance/noImgElement: Revision URLs come from the supplied record. */}
-                        <img
-                          src={revision.versions.before}
-                          alt="Artwork before revision"
-                          style={{
-                            clipPath: `inset(0 ${100 - split}% 0 0)`,
-                          }}
-                        />
-                        <label>
-                          Compare before and after
-                          <input
-                            type="range"
-                            min="0"
-                            max="100"
-                            value={split}
-                            onChange={(event) =>
-                              setSplit(event.currentTarget.valueAsNumber)
-                            }
-                          />
-                        </label>
                       </div>
                     )}
-                  </>
-                )}
-              </div>
+                  </div>
+                  <div className="archive-history">
+                    {record.image && missingImage !== record.image ? (
+                      // biome-ignore lint/performance/noImgElement: Records may supply remote or local artwork.
+                      <img
+                        src={record.image}
+                        alt={`${record.title} cover artwork`}
+                        loading="lazy"
+                        width="72"
+                        height="90"
+                        onError={() => setMissingImage(record.image)}
+                      />
+                    ) : (
+                      <p className="study-code">Artwork unavailable</p>
+                    )}
+                    {revision && (
+                      <>
+                        <p className="study-code">Revision history</p>
+                        <div className="archive-versions">
+                          {record.revisions.map((entry) => (
+                            <button
+                              key={entry.id}
+                              aria-pressed={revision.id === entry.id}
+                              type="button"
+                              onClick={() => {
+                                setRevisionId(entry.id);
+                                setSplit(50);
+                                onRevisionSelect?.(entry.id);
+                              }}
+                            >
+                              <strong>{entry.id}</strong>
+                              <small>{entry.date}</small>
+                            </button>
+                          ))}
+                        </div>
+                        <div aria-live="polite">
+                          <p
+                            className="archive-revision-note"
+                            key={revision.id}
+                          >
+                            {revision.note}
+                          </p>
+                        </div>
+                        {revision.versions && (
+                          <div className="archive-diff">
+                            {/* biome-ignore lint/performance/noImgElement: Revision URLs come from the supplied record. */}
+                            <img
+                              src={revision.versions.after}
+                              alt="Artwork after revision"
+                            />
+                            {/* biome-ignore lint/performance/noImgElement: Revision URLs come from the supplied record. */}
+                            <img
+                              src={revision.versions.before}
+                              alt="Artwork before revision"
+                              style={{
+                                clipPath: `inset(0 ${100 - split}% 0 0)`,
+                              }}
+                            />
+                            <label>
+                              Compare before and after
+                              <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value={split}
+                                onChange={(event) =>
+                                  setSplit(event.currentTarget.valueAsNumber)
+                                }
+                              />
+                            </label>
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <p className="archive-empty">
+                  This asset has no recorded evidence yet.
+                </p>
+              )}
+              <output className="archive-notice">{notice}</output>
             </div>
-          ) : (
-            <p className="archive-empty">
-              This asset has no recorded evidence yet.
-            </p>
-          )}
-          <output className="archive-notice">{notice}</output>
+          </div>
         </div>
       </div>
     </div>

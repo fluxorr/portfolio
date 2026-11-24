@@ -97,10 +97,22 @@ export default async function StudyPage({ params }: Props) {
             <h2>Implementation notes</h2>
             <p>{study.note}</p>
           </div>
-          <Link href={`/studies/${next.slug}`} prefetch={false}>
-            <small className="study-code">Next study · {next.number}</small>
+          <Link
+            href={
+              slug === "palimpsest"
+                ? "/showcase#components"
+                : `/studies/${next.slug}`
+            }
+            prefetch={false}
+          >
+            <small className="study-code">
+              {slug === "palimpsest"
+                ? "Components"
+                : `Next study · ${next.number}`}
+            </small>
             <span>
-              {next.name} <Arrow direction="out" />
+              {slug === "palimpsest" ? "Back to showcase" : next.name}{" "}
+              <Arrow direction="out" />
             </span>
           </Link>
         </div>

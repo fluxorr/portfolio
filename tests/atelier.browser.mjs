@@ -23,7 +23,7 @@ async (page) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto(`${base}/showcase#components`);
   check(
-    (await page.locator(".atelier-entry-link").count()) === 5,
+    (await page.locator("#components article").count()) === 5,
     "Five index links",
   );
   await page

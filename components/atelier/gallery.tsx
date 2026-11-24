@@ -1,7 +1,10 @@
 import Link from "next/link";
+import { GlassFolder } from "@/components/portfolio/demos/glass-folder";
+import { ImageAccordion } from "@/components/portfolio/demos/image-accordion";
+import { LiquidCheckout } from "@/components/portfolio/demos/liquid-checkout";
 import { Arrow } from "@/components/portfolio/links";
+import { SignatureDemo } from "@/components/signature/signature-demo";
 import { atelierFonts } from "@/lib/atelier/fonts";
-import { studies } from "@/lib/atelier/studies";
 import { StudyPreview } from "./study-preview";
 import "./study-common.css";
 import "./gallery.css";
@@ -16,42 +19,78 @@ export function AtelierGallery() {
       <header className="atelier-intro">
         <div>
           <h2 id="atelier-title">Components</h2>
-          <p>Five small tools, built to be tried.</p>
+          <p>Five interactive studies.</p>
         </div>
         <span className="atelier-catalog">
           Atelier <i aria-hidden="true">/</i> 05
         </span>
       </header>
-
       <div className="atelier-index">
-        {studies.map((study) => (
-          <article
-            key={study.slug}
-            className={`atelier-entry atelier-entry-${study.slug}`}
+        <article
+          className="atelier-entry"
+          aria-labelledby="atelier-palimpsest-title"
+        >
+          <Link
+            href="/studies/palimpsest"
+            prefetch={false}
+            className="atelier-entry-link"
+            aria-label="Inspect record · Palimpsest"
           >
-            <Link
-              href={`/studies/${study.slug}`}
-              prefetch={false}
-              className="atelier-entry-link"
-              aria-label={`${study.action} · ${study.name}`}
-            >
-              <StudyPreview slug={study.slug} />
-              <div className="atelier-entry-text">
-                <span className="atelier-entry-index study-code">
-                  {study.number}
-                </span>
-                <div>
-                  <h3>{study.name}</h3>
-                  <p>{study.job}</p>
-                </div>
-                <span className="atelier-entry-action">
-                  <span>{study.action}</span>
-                  <Arrow direction="out" />
-                </span>
+            <StudyPreview />
+            <div className="atelier-entry-text">
+              <span className="atelier-entry-index study-code">01</span>
+              <div>
+                <h3 id="atelier-palimpsest-title">Palimpsest</h3>
+                <p>Provenance cabinet</p>
               </div>
-            </Link>
-          </article>
-        ))}
+              <span className="atelier-entry-action">
+                <span>Inspect record</span>
+                <Arrow direction="out" />
+              </span>
+            </div>
+          </Link>
+        </article>
+        <article
+          className="atelier-entry atelier-entry-half"
+          aria-labelledby="demo-folder-title"
+        >
+          <GlassFolder />
+          <div className="atelier-entry-text">
+            <span className="atelier-entry-index study-code">02</span>
+            <h3 id="demo-folder-title">Glass folder</h3>
+          </div>
+        </article>
+        <article
+          className="atelier-entry atelier-entry-half"
+          aria-labelledby="demo-checkout-title"
+        >
+          <LiquidCheckout />
+          <div className="atelier-entry-text">
+            <span className="atelier-entry-index study-code">03</span>
+            <h3 id="demo-checkout-title">Liquid glass checkout</h3>
+          </div>
+        </article>
+        <article
+          className="atelier-entry"
+          aria-labelledby="demo-accordion-title"
+        >
+          <ImageAccordion />
+          <div className="atelier-entry-text">
+            <span className="atelier-entry-index study-code">04</span>
+            <h3 id="demo-accordion-title">Image accordion</h3>
+          </div>
+        </article>
+        <article
+          className="atelier-entry"
+          aria-labelledby="demo-signature-title"
+          id="signature-approval"
+        >
+          <SignatureDemo />
+          <div className="atelier-entry-text">
+            <span className="atelier-entry-index study-code">05</span>
+            <h3 id="demo-signature-title">Signature approval</h3>
+          </div>
+        </article>
       </div>
     </section>
   );

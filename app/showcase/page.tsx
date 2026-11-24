@@ -8,7 +8,6 @@ import { portfolio } from "@/lib/portfolio-content";
 import { showcaseFont } from "@/lib/showcase-font";
 import "./showcase.css";
 import "./demos.css";
-import "./slips-wallet.css";
 
 const description =
   "Explore websites and original interactive design demos by Rahul Chaudhari.";
