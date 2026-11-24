@@ -674,10 +674,18 @@
   transform: scale(0.95);
 }
 
-.demo-folder-status span,
-.demo-liquid-total output span {
-  display: inline-block;
-  animation: demo-detail-in 250ms var(--glass-ease) both;
+.demo-folder-status {
+  display: grid;
+  align-content: center;
+}
+.demo-folder-status span {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(5px);
+}
+.demo-folder-status span[data-current="true"] {
+  opacity: 1;
+  transform: none;
 }
 
 .demo-liquid-state {
@@ -708,11 +716,7 @@
 }
 
 .demo-liquid-panel[data-complete="true"] .demo-liquid-check {
-  animation: demo-seal-in 460ms 100ms var(--glass-ease) both;
-}
-
-.demo-liquid-primary span {
-  animation: demo-detail-in 240ms var(--glass-ease) both;
+  animation: demo-seal-in 350ms 80ms var(--glass-ease) both;
 }
 
 .demo-liquid-primary svg {
@@ -749,11 +753,7 @@
 @keyframes demo-seal-in {
   0% {
     opacity: 0;
-    transform: scale(0.65) rotate(-14deg);
-  }
-
-  65% {
-    transform: scale(1.07) rotate(2deg);
+    transform: scale(0.84) rotate(-6deg);
   }
 
   100% {
@@ -824,7 +824,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .demo-section
+  :is(.demo-section, .atelier-gallery)
     :is(
       .demo-folder[data-open] .demo-folder-file,
       .demo-folder-back,
@@ -860,7 +860,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .demo-liquid-panel[data-complete="true"] .demo-liquid-check svg path {
-    animation: demo-check-draw 320ms 180ms var(--glass-ease) both;
+    animation: demo-check-draw 290ms 150ms var(--glass-ease) both;
   }
 }
 
@@ -916,5 +916,103 @@
 
   .demo-block-link:hover .portfolio-button svg {
     transform: translate(2px, -2px);
+  }
+}
+
+.demo-liquid-primary-label {
+  display: grid;
+}
+.demo-liquid-primary-label > span {
+  grid-area: 1 / 1;
+}
+.demo-liquid-primary-label > span[aria-hidden="true"] {
+  opacity: 0;
+}
+.demo-liquid-number {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .demo-folder-file {
+    transition:
+      transform 290ms var(--glass-ease) calc(var(--file-order) * 13ms),
+      translate 230ms var(--glass-ease),
+      background-color 170ms ease,
+      border-color 170ms ease;
+  }
+  .demo-folder[data-open="true"] .demo-folder-file {
+    transition-duration: 480ms, 230ms, 170ms, 170ms;
+    transition-delay: calc((3 - var(--file-order)) * 31ms), 0ms, 0ms, 0ms;
+  }
+  .demo-folder[data-open="true"] .demo-folder-file[aria-pressed="true"] {
+    translate: 5px 0;
+  }
+  .demo-folder
+    .demo-folder-file
+    :is(.demo-folder-file-name, .demo-folder-file-type) {
+    transition:
+      opacity 125ms ease,
+      translate 210ms var(--glass-ease);
+  }
+  .demo-folder[data-open="false"]
+    :is(.demo-folder-file-name, .demo-folder-file-type) {
+    translate: 0 4px;
+  }
+  .demo-folder[data-open="true"]
+    .demo-folder-file
+    :is(.demo-folder-file-name, .demo-folder-file-type) {
+    transition-delay: calc(36ms + (3 - var(--file-order)) * 31ms);
+  }
+  .demo-folder-status span {
+    transition:
+      opacity 115ms ease,
+      transform 230ms var(--glass-ease);
+  }
+  .demo-folder-status span[data-current="true"] {
+    transition-delay: 58ms;
+  }
+  .demo-liquid-panel[data-direction="-1"] {
+    --number-travel: -6px;
+  }
+  .demo-liquid-panel:not([data-direction="0"]) .demo-liquid-number {
+    animation: demo-number-in 260ms var(--glass-ease) both;
+  }
+  .demo-liquid-panel:not([data-direction="0"])
+    .demo-liquid-totals
+    > :nth-child(2)
+    .demo-liquid-number {
+    animation-delay: 32ms;
+  }
+  .demo-liquid-panel:not([data-direction="0"])
+    .demo-liquid-total
+    .demo-liquid-number {
+    animation-delay: 65ms;
+  }
+  .demo-liquid-primary-label > span {
+    transition:
+      opacity 145ms ease,
+      translate 230ms var(--glass-ease);
+  }
+  .demo-liquid-primary-label > span[aria-hidden="true"] {
+    translate: 0 -4px;
+  }
+  .demo-liquid-primary-label > span[aria-hidden="false"] {
+    transition-delay: 45ms;
+  }
+  .demo-liquid-panel[data-complete="true"] .demo-liquid-success strong {
+    animation: demo-detail-in 320ms 122ms var(--glass-ease) both;
+  }
+  .demo-liquid-panel[data-complete="true"] .demo-liquid-success output span {
+    animation: demo-detail-in 320ms 177ms var(--glass-ease) both;
+  }
+  @keyframes demo-number-in {
+    from {
+      opacity: 0.25;
+      transform: translateY(var(--number-travel, 6px));
+      clip-path: inset(0 0 18% 0);
+    }
+    to {
+      clip-path: inset(0);
+    }
   }
 }

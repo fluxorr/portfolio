@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { type CSSProperties, useState } from "react";
+import { type CSSProperties, useId, useRef, useState } from "react";
 import { Arrow } from "../links";
 import { usePointerPosition } from "./use-pointer-position";
 
@@ -37,6 +37,8 @@ const files = [
 ] as const;
 
 export function GlassFolder() {
+  const filesId = useId();
+  const toggle = useRef<HTMLButtonElement>(null);
   const stageRef = usePointerPosition<HTMLDivElement>();
   const [mode, setMode] = useState<"closed" | "hover" | "pinned">("closed");
   const [active, setActive] = useState<(typeof files)[number]>();
@@ -68,14 +70,21 @@ export function GlassFolder() {
             <p>{files.length} files</p>
           </div>
           <button
-            aria-controls="glass-folder-files"
+            aria-controls={filesId}
             aria-expanded={open}
-            aria-label={open ? "Close project folder" : "Open project folder"}
+            aria-label={
+              mode === "pinned"
+                ? "Close project folder"
+                : mode === "hover"
+                  ? "Keep project folder open"
+                  : "Open project folder"
+            }
             className="demo-folder-toggle"
             onClick={() => {
-              if (open) close();
+              if (mode === "pinned") close();
               else setMode("pinned");
             }}
+            ref={toggle}
             type="button"
           >
             <Arrow direction="down" />
@@ -84,7 +93,7 @@ export function GlassFolder() {
         <div
           aria-hidden={!open}
           className="demo-folder-files"
-          id="glass-folder-files"
+          id={filesId}
           inert={!open}
         >
           {files.map((file, index) => (
@@ -95,6 +104,12 @@ export function GlassFolder() {
               onClick={() => {
                 setMode("pinned");
                 setActive(file);
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                  close();
+                  toggle.current?.focus();
+                }
               }}
               onFocus={(event) => {
                 if (event.currentTarget.matches(":focus-visible")) {
@@ -116,11 +131,21 @@ export function GlassFolder() {
         </div>
       </div>
       <output className="demo-folder-status">
-        {open ? (
-          <span key={active?.id ?? "open"}>
-            {active?.note ?? "Select a file to see its details."}
+        <span
+          aria-hidden={!open || Boolean(active)}
+          data-current={open && !active}
+        >
+          Select a file to see its details.
+        </span>
+        {files.map(({ id, note }) => (
+          <span
+            key={id}
+            aria-hidden={!open || active?.id !== id}
+            data-current={open && active?.id === id}
+          >
+            {note}
           </span>
-        ) : null}
+        ))}
       </output>
     </div>
   );

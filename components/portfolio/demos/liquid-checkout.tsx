@@ -14,15 +14,29 @@ const formatPrice = new Intl.NumberFormat("en-US", {
 
 export function LiquidCheckout() {
   const stageRef = usePointerPosition<HTMLDivElement>();
-  const [quantity, setQuantity] = useState(1);
+  const [{ quantity, direction }, setTickets] = useState({
+    quantity: 1,
+    direction: 0,
+  });
   const [complete, setComplete] = useState(false);
   const subtotal = quantity * ticketPrice;
   const fee = quantity * feePerTicket;
   const total = subtotal + fee;
 
+  function changeQuantity(direction: number) {
+    setTickets((current) => ({
+      quantity: Math.max(1, Math.min(6, current.quantity + direction)),
+      direction,
+    }));
+  }
+
   return (
     <div className="demo-liquid-stage" ref={stageRef}>
-      <div className="demo-liquid-panel" data-complete={complete}>
+      <div
+        className="demo-liquid-panel"
+        data-complete={complete}
+        data-direction={direction}
+      >
         <div className="demo-liquid-header">
           <h4>Checkout</h4>
           <span>USD</span>
@@ -67,16 +81,20 @@ export function LiquidCheckout() {
                 <button
                   aria-label="Remove one ticket"
                   disabled={quantity === 1}
-                  onClick={() => setQuantity((count) => Math.max(1, count - 1))}
+                  onClick={() => changeQuantity(-1)}
                   type="button"
                 >
                   −
                 </button>
-                <output aria-label="Quantity">{quantity}</output>
+                <output aria-label="Quantity">
+                  <span className="demo-liquid-number" key={quantity}>
+                    {quantity}
+                  </span>
+                </output>
                 <button
                   aria-label="Add one ticket"
                   disabled={quantity === 6}
-                  onClick={() => setQuantity((count) => Math.min(6, count + 1))}
+                  onClick={() => changeQuantity(1)}
                   type="button"
                 >
                   +
@@ -86,17 +104,27 @@ export function LiquidCheckout() {
             <dl className="demo-liquid-totals">
               <div>
                 <dt>Subtotal</dt>
-                <dd>{formatPrice.format(subtotal)}</dd>
+                <dd>
+                  <span className="demo-liquid-number" key={subtotal}>
+                    {formatPrice.format(subtotal)}
+                  </span>
+                </dd>
               </div>
               <div>
                 <dt>Booking fee</dt>
-                <dd>{formatPrice.format(fee)}</dd>
+                <dd>
+                  <span className="demo-liquid-number" key={fee}>
+                    {formatPrice.format(fee)}
+                  </span>
+                </dd>
               </div>
               <div className="demo-liquid-total">
                 <dt>Total</dt>
                 <dd>
                   <output>
-                    <span key={total}>{formatPrice.format(total)}</span>
+                    <span className="demo-liquid-number" key={total}>
+                      {formatPrice.format(total)}
+                    </span>
                   </output>
                 </dd>
               </div>
@@ -108,8 +136,9 @@ export function LiquidCheckout() {
           onClick={() => setComplete((value) => !value)}
           type="button"
         >
-          <span key={String(complete)}>
-            {complete ? "Back to checkout" : "Complete demo order"}
+          <span className="demo-liquid-primary-label">
+            <span aria-hidden={complete}>Complete demo order</span>
+            <span aria-hidden={!complete}>Back to checkout</span>
           </span>
           <Arrow />
         </button>
