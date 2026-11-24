@@ -37,4 +37,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Atelier / 05
 
-Open [Showcase → Components](http://localhost:6969/showcase#components) with the portfolio running via `bun run dev:next`. The collection includes five individual studies under `/studies`. See the [Atelier README](components/atelier/README.md) for tools, data sources, and verification commands.
+Open [Showcase → Components](http://localhost:6969/showcase#components) with the portfolio running via `bun run dev:next`. The current collection has Palimpsest, Glass folder, Liquid glass checkout, Image accordion, and Signature approval. Palimpsest opens on its own study page and the other four run in the showcase.

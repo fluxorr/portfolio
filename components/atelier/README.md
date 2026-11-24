@@ -1,6 +1,6 @@
 # Atelier / 05
 
-Five standalone tools appear at [Showcase → Components](http://localhost:6969/showcase#components). The Slips wallet stays in the workshop section just below them.
+[Showcase → Components](http://localhost:6969/showcase#components) features Palimpsest, Glass folder, Liquid glass checkout, Image accordion, and Signature approval. This document also describes the earlier standalone Atelier routes, which are available by direct URL.
 
 Run `bun install` and `bun run dev:next` from the portfolio. The studies are available at `/studies/<slug>`. Run `bun test tests/atelier.test.ts` for calculation and asset checks, and `bun run build` for the production check.
 
