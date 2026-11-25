@@ -51,7 +51,6 @@ const conceptSites = [
 export function ShowcaseDemos() {
   return (
     <>
-      <AtelierGallery />
       <section
         aria-labelledby="demo-blocks-title"
         className="showcase-section demo-section"
@@ -108,16 +107,8 @@ export function ShowcaseDemos() {
             </article>
           ))}
         </div>
-        <div className="demo-project-cta">
-          <Link
-            className="portfolio-button portfolio-button--primary"
-            href="/#contact"
-            prefetch={false}
-          >
-            Start a project <Arrow direction="out" />
-          </Link>
-        </div>
       </section>
+      <AtelierGallery />
     </>
   );
 }

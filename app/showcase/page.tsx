@@ -52,18 +52,20 @@ export default function ShowcasePage() {
         <div className="showcase-intro">
           <h1 className="showcase-title">Showcase</h1>
           <nav aria-label="Showcase sections" className="showcase-section-nav">
-            <a href="#full-sites">Full sites</a>
-            <a href="#components">Components</a>
             <a href="#blocks">Concept sites</a>
+            <a href="#components">Components</a>
+            <a href="#full-sites">Full sites</a>
           </nav>
         </div>
+        <ShowcaseDemos />
         <ShowcasePreviews>
           <section
-            aria-label="Full sites"
-            className="showcase-section"
+            aria-labelledby="full-sites-title"
+            className="showcase-section demo-section"
             id="full-sites"
           >
-            <div className="showcase-grid">
+            <h2 id="full-sites-title">Full sites</h2>
+            <div className="showcase-grid mt-6">
               {portfolio.work.items.map((item) => (
                 <article
                   aria-labelledby={`${item.id}-title`}
@@ -84,7 +86,7 @@ export default function ShowcasePage() {
                     />
                   </div>
                   <div className="showcase-card-body">
-                    <h2 id={`${item.id}-title`}>{item.name}</h2>
+                    <h3 id={`${item.id}-title`}>{item.name}</h3>
                     <div className="showcase-card-actions">
                       <button
                         aria-haspopup="dialog"
@@ -110,9 +112,17 @@ export default function ShowcasePage() {
                 </article>
               ))}
             </div>
+            <div className="demo-project-cta">
+              <Link
+                className="portfolio-button portfolio-button--primary"
+                href="/#contact"
+                prefetch={false}
+              >
+                Start a project <Arrow direction="out" />
+              </Link>
+            </div>
           </section>
         </ShowcasePreviews>
-        <ShowcaseDemos />
       </main>
       <footer className="portfolio-shell portfolio-footer">
         <Wordmark />
